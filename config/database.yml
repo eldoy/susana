@@ -1,0 +1,14 @@
+defaults: &defaults
+  adapter: mongodb
+  url: localhost
+  port: 27017
+  # name: susana
+
+development:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+production:
+  <<: *defaults

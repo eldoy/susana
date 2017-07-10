@@ -1,6 +1,6 @@
 class ApplicationController
 
-  include ApplicationHelper
+  include ApplicationHelpers, Asset::Helpers
 
   attr_accessor :req, :res, :env, :params, :cookies, :flash
 

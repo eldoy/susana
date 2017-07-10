@@ -1,4 +1,4 @@
-module ApplicationHelper
+module ApplicationHelpers
 
   # Render erb template
   def erb(name, options = {})

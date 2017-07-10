@@ -2,9 +2,10 @@
 <html>
 <head>
   <title><%= @title || 'Hello' %></title>
+  <%= style_tag 'bundle.css' %>
 </head>
 <body>
-  <%= @layout %>
+  <%= script_tag 'bundle.js' %>
   <%= yield %>
 </body>
 </html>

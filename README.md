@@ -7,7 +7,7 @@ Light weight Ruby web application framework based on Rack
 - Live code reloading
 - Asset packer and helpers
 - Erb and JSON support
-- Rails style actions
+- Rails style controllers
 - Action filters
 - Thread safe
 - Background queue included

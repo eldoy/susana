@@ -103,6 +103,7 @@ Dir['./config/extensions/*.rb'].sort.each{|f| require f}
 Dir['./lib/tools/*.rb'].sort.each{|f| require f}
 Dir['./lib/jobs/*.rb'].sort.each{|f| autoload auto(f), f}
 Dir['./lib/helpers/*.rb'].sort.each{|f| require f}
+Dir['./lib/*.rb'].sort.each{|f| require f}
 
 # App files
 Dir['./app/helpers/*.rb'].sort.each{|f| require f}

@@ -36,7 +36,7 @@ class App
       print_info(env, req) if App.env == 'development'
 
       # Set up controller
-      controller = Object.const_get("#{route[1].capitalize}Controller").new(req, res, env)
+      controller = Object.const_get("#{route[1].capitalize}Controller").new(req, res, env.dup)
 
       # Catch halt commands
       catch(:halt) do

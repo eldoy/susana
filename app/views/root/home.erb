@@ -1,3 +1,5 @@
 <h1>Hello</h1>
-<%= params %>
-<%= env %>
+<p>Params: <%= params %></p>
+<p>Date: <%= l(Time.now) %></p>
+<p>Locale: <%= t(:hello) %> (<%= I18n.locale %>)</p>
+<p><%= env.dup %></p>

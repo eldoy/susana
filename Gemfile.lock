@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/fugroup/fuprint.git
-  revision: 627361901c4aada8b49aa26571f6456e037f56a8
+  revision: 2a0e2aa68b3ae4959da54c2687a14ded9bdda000
   specs:
     fuprint (0.1.3)
       rack
@@ -23,6 +23,7 @@ GEM
     concurrent-ruby (1.0.5)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
     futest (0.1.1)
@@ -89,9 +90,11 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   asset
+  erubis
   fuprint!
   futest
   hash_dot
+  i18n
   listen
   minimongo
   mustermann

@@ -1,9 +1,9 @@
 module Susana
   class Base
 
-    include ApplicationHelpers, Asset::Helpers
+    include Asset::Helpers
 
-    attr_accessor :req, :res, :env, :params, :cookies, :flash
+    attr_accessor :req, :res, :env, :params, :cookies, :flash, :errors
 
     def initialize(req, res, env)
       self.req = req
@@ -12,6 +12,7 @@ module Susana
       self.params = req.params
       self.cookies = req.cookies
       self.flash = env['x-rack.flash']
+      self.errors = Hash.new{|h, k| h[k] = []}
     end
 
     # Convenience for request and response objects

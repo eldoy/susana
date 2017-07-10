@@ -2,7 +2,7 @@ class App
 
   include Fuprint::Helpers
 
-  class << self; attr_accessor :settings, :database, :name, :root, :views, :assets, :env, :map, :routes, :debug; end
+  class << self; attr_accessor :settings, :database, :name, :root, :views, :assets, :env, :map, :routes, :regex, :debug; end
 
   def initialize(app = nil)
     @app = app
@@ -22,9 +22,16 @@ class App
     # puts "REQUEST METHOD: #{req.request_method}"
     # puts "PATH INFO: #{req.path_info}"
 
+    # Set up path and locale
+    path = req.path_info.gsub(App.regex.locale, '/')
+    I18n.locale = $1 || :en
+
+    # puts "PATH: #{path}"
+    # puts "LOCALE: #{I18n.locale}"
+
     # Match a route
     routes = App.map[req.request_method] || []; match = nil
-    route = routes.find{|r| match = r[0].params(req.path_info)}
+    route = routes.find{|r| match = r[0].params(path)}
 
     if match
       # puts "FOUND: #{route[1]}##{route[2]} - #{match.inspect}"
@@ -36,7 +43,7 @@ class App
       print_info(env, req) if App.env == 'development'
 
       # Set up controller
-      controller = Object.const_get("#{route[1].capitalize}Controller").new(req, res, env.dup)
+      controller = Object.const_get("#{route[1].capitalize}Controller").new(req, res, env)
 
       # Catch halt commands
       catch(:halt) do

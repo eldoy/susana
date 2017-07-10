@@ -4,9 +4,6 @@ $web = true
 # Init the app
 require './config/boot.rb'
 
-# Middleware
-Dir['./lib/middleware/*.rb'].sort.each{|f| require f}
-
 # Set up middleware stack
 app = Rack::Builder.new do
   use UTF8Cleaner::Middleware
@@ -20,7 +17,7 @@ app = Rack::Builder.new do
   use Rack::Cache, :metastore => 'file:./tmp/cache/rack/meta', :entitystore => 'file:./tmp/cache/rack/body', :verbose => false unless %w[development test].include?(App.env)
 
   use Asset::Router
-  use Rack::Session::Cookie, :path => '/', :secret => '98796b2a7d85ca6f658b4708379a0fece0db3a63d284743969b0e'
+  use Rack::Session::Cookie, :path => '/', :secret => App.settings.cookie_secret
   use Rack::Flash
   use Rack::PostBodyContentTypeParser
   use Rack::JSONP

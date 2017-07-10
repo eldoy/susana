@@ -13,6 +13,8 @@ gem 'minimongo'
 gem 'tilt'
 gem 'mustermann'
 gem 'hash_dot'
+gem 'erubis'
+gem 'i18n'
 
 group :development, :test do
   gem 'futest'

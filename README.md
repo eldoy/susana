@@ -3,14 +3,20 @@
 Light weight Ruby web application framework based on Rack
 
 **Features:**
-- Rails style controllers
 - Super fast and light weight
 - Live code reloading
+- Asset packer and helpers
 - Erb and JSON support
+- Rails style actions
+- Action filters
+- Thread safe
+- Background queue included
+- Language translations
 - Sinatra style route matchers
-- Built in asset packer
+- Parameter validations
 - Optional models
-- MongoDB built in
+- Dot syntax for hashes
+- MongoDB adapter
 - Easy to use
 
 Currently under development, contributions are welcome.

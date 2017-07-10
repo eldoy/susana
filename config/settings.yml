@@ -1,0 +1,5 @@
+# Your app settings go here
+
+cookie_secret: '98796b2a7d85ca6fa58b4706379a0fece0db3a63d284743969b0e'
+http_basic_user: admin
+http_basic_password: susana

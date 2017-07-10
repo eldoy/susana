@@ -1,3 +1,5 @@
+# Database settings
+
 defaults: &defaults
   adapter: mongodb
   url: localhost

@@ -1,0 +1,45 @@
+# Pushfile options for file uploads
+# Requires graphicsmagick on your server
+# https://github.com/fugroup/pushfile
+
+# Upload limit
+upload_limit: 10000000
+
+# Rackspace
+rackspace_cdn: your_rackspace_cdn
+rackspace_key: your_rackspace_key
+rackspace_username: your_rackspace_username
+rackspace_container: your_rackspace_container
+
+# Amazon
+amazon_cdn: https://s3.amazonaws.com
+amazon_key: your_amazon_key
+amazon_secret: your_amazon_secret
+amazon_container: your_container
+
+# Image resize configs
+images:
+  default:
+    width: 590
+  campaign:
+    width: 610
+  article:
+    width: 610
+  update:
+    width: 590
+  ads:
+    width: 155
+  groups:
+    width: 236
+  logo:
+    width: 3200
+  files:
+    width: 3200
+  thumb:
+    width: 90
+  avatar:
+    width: 50
+  reward:
+    width: 200
+  commitment:
+    width: 200

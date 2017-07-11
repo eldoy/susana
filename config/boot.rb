@@ -18,8 +18,9 @@ groups << :test if env == 'test'
 groups << :development if env == 'development'
 Bundler.require(*groups)
 
-autoload :SuckerPunch, 'sucker_punch'
 autoload :Asset, 'asset'
+autoload :Pushfile, 'pushfile'
+autoload :SuckerPunch, 'sucker_punch'
 autoload :SitemapGenerator, 'sitemap_generator'
 
 # Active support

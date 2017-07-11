@@ -1,3 +1,6 @@
 Remaining items to test / implement:
 
-* Uploads
+* Write tests
+* Make gem with binary
+* Generators
+* Scripts

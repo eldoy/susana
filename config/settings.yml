@@ -2,3 +2,5 @@
 
 http_basic_user: admin
 http_basic_password: susana
+mailgun_api_url: your_mailgun_api_url
+

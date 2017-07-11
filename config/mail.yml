@@ -1,0 +1,12 @@
+# Your database settings go here
+
+defaults: &defaults
+  to: vidar@fugroup.net
+  from: vidar@fugroup.net
+  reply: vidar@fugroup.net
+  cc: []
+  bcc: []
+
+hello:
+  <<: *defaults
+  subject: Hello

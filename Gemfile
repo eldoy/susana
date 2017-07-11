@@ -15,6 +15,7 @@ gem 'mustermann'
 gem 'hash_dot'
 gem 'erubis'
 gem 'i18n'
+gem 'sucker_punch', :require => false
 
 group :development, :test do
   gem 'futest'

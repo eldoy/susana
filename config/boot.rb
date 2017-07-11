@@ -61,6 +61,9 @@ App.settings = YAML.load_file('./config/settings.yml') || {}
 # Set up available regex
 App.regex = Susana::Regex.new
 
+# Set up mail
+App.mail = Susana::Mail.new
+
 # Helper to get class name from file name
 def klass(f); f.split('/').last[0..-4].camelize; end
 

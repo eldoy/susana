@@ -2,6 +2,9 @@
 Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 
+# Set to true if running web server
+$web ||= false
+
 # Set up env
 env = ENV['RACK_ENV'] || 'development'
 
@@ -17,6 +20,7 @@ Bundler.require(*groups)
 
 autoload :SuckerPunch, 'sucker_punch'
 autoload :Asset, 'asset'
+autoload :SitemapGenerator, 'sitemap_generator'
 
 # Active support
 require 'active_support'
@@ -33,7 +37,6 @@ require 'json'
 require 'set'
 require 'net/http'
 require 'net/https'
-require 'rexml/document'
 require 'erb'
 autoload :CGI, 'cgi'
 
@@ -63,6 +66,15 @@ App.regex = Susana::Regex.new
 
 # Set up mail
 App.mail = Susana::Mail.new
+
+# Set up sitemap and write
+App.sitemap = Susana::Sitemap.new
+
+# Uncomment to always write sitemap on startup
+# App.sitemap.write if env == 'production' and $web
+
+# Uncomment to always ping search engines
+# App.sitemap.ping if env == 'production' and $web
 
 # Helper to get class name from file name
 def klass(f); f.split('/').last[0..-4].camelize; end
@@ -95,7 +107,6 @@ end
 stats.app
 
 # Console
-$web ||= false
 unless $web
   # Add your console statements here
   # Start a console with irb -r ./config/boot.rb

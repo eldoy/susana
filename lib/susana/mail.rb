@@ -7,7 +7,6 @@ module Susana
     def initialize
       # Collect existing emails
       @mails = YAML.load_file('./config/mail.yml').deep_symbolize_keys.tap{|r| r.delete(:defaults)}
-      puts @mails.inspect
     end
 
     # Try to send email
@@ -20,13 +19,12 @@ module Susana
 
     # Deliver email
     def deliver(opt)
-      opt = opt.deep_symbolize_keys
-      puts @name
-      puts opt.inspect
-      puts @mail
 
       # Don't deliver if we are in test env
       return false if App.env == 'test'
+
+      # Symbolize keys
+      opt = opt.deep_symbolize_keys
 
       # Set language
       @lang = I18n.locale || :en
@@ -55,9 +53,7 @@ module Susana
       }
       options.delete(:bcc) if options[:bcc].blank?
 
-      puts "OPTIONS: #{options.inspect}"
-
-      # Find mailgun url based on site and owndomain, or use default
+      # Mailgun url
       url = "#{App.settings.mailgun_api_url}/messages"
 
       # Deliver

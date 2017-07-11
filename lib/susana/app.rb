@@ -3,7 +3,7 @@ class App
   include Fuprint::Helpers
 
   class << self
-    attr_accessor :settings, :database, :name, :root, :views, :assets, :env, :map, :routes, :regex, :mail, :debug
+    attr_accessor :settings, :database, :name, :root, :views, :assets, :env, :map, :routes, :regex, :mail, :sitemap, :debug
   end
 
   def initialize(app = nil)

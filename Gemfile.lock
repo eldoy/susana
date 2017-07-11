@@ -20,6 +20,7 @@ GEM
       therubyracer
       uglifier
     bson (4.2.2)
+    builder (3.2.3)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     concurrent-ruby (1.0.5)
@@ -72,6 +73,8 @@ GEM
       netrc (~> 0.8)
     ruby_dep (1.5.0)
     sass (3.4.25)
+    sitemap_generator (5.3.1)
+      builder (~> 3.0)
     sucker_punch (1.4.0)
       celluloid (~> 0.16.0)
     therubyracer (0.12.3)
@@ -112,6 +115,7 @@ DEPENDENCIES
   rack-flash3
   rake
   request_store
+  sitemap_generator
   sucker_punch
   tilt
   utf8-cleaner

@@ -2,4 +2,6 @@
 <p>Params: <%= params %></p>
 <p>Date: <%= l(Time.now) %></p>
 <p>Locale: <%= t(:hello) %> (<%= I18n.locale %>)</p>
+<p>Session: <%= session[:user] %></p>
+<p>Cookies: <%= cookies[:user] %></p>
 <p><%= env.dup %></p>

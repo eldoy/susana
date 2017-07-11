@@ -1,4 +1,4 @@
-# Database settings
+# Your database settings go here
 
 defaults: &defaults
   adapter: mongodb

@@ -24,7 +24,7 @@ module ApplicationHelpers
 
   # Check if authorized
   def authorized?
-    @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+    @auth ||=  Rack::Auth::Basic::Request.new(req.env)
     @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [App.settings.http_basic_user, App.settings.http_basic_password]
   end
 

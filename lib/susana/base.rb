@@ -3,14 +3,15 @@ module Susana
 
     include Asset::Helpers
 
-    attr_accessor :req, :res, :env, :params, :cookies, :flash, :errors
+    attr_accessor :req, :res, :env, :params, :cookies, :session, :flash, :errors
 
     def initialize(req, res, env)
       self.req = req
       self.res = res
       self.env = env
       self.params = req.params
-      self.cookies = req.cookies
+      self.cookies = Susana::Cookies.new(req, res)
+      self.session = env['rack.session']
       self.flash = env['x-rack.flash']
       self.errors = Hash.new{|h, k| h[k] = []}
     end

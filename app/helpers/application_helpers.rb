@@ -4,14 +4,14 @@ module ApplicationHelpers
 
   # Render erb template
   def erb(name, options = {})
-    template = Tilt::ERBTemplate.new("#{App.views}/#{name}.erb")
+    template = Tilt['erb'].new("#{App.views}/#{name}.erb")
     render = template.render(self, options[:locals])
 
     # Return render unless options[:layout] is set
     return render unless options[:layout]
 
     # Render with layout
-    layout = Tilt::ERBTemplate.new("#{App.views}/layout/#{options[:layout]}.erb")
+    layout = Tilt['erb'].new("#{App.views}/layout/#{options[:layout]}.erb")
     layout.render(self, options[:locals]) { render }
   end
 

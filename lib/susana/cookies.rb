@@ -19,7 +19,7 @@ module Susana
       # Extract arguments
       key, value, opt = args; key = key.to_s
 
-      # Default: :path => '/', :expire_after => 30.days.to_i
+      # Default options: :path => '/', :expire_after => 30.days.to_i
       # Optional: domain => req.host, :secure => req.secure?, :httponly => true/false
       o = {:path => '/', :expire_after => 30.days.to_i}.merge(opt || {}).compact
 

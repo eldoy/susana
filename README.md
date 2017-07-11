@@ -8,6 +8,8 @@ Light weight Ruby web application framework based on Rack
 - Asset packer and helpers
 - Erb and JSON support
 - Rails style controllers
+- Secure sessions and cookies
+- Regular expressions included
 - Action filters
 - Thread safe
 - Background queue included

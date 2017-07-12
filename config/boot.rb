@@ -20,6 +20,8 @@ Bundler.require(*groups)
 
 autoload :Asset, 'asset'
 autoload :Pushfile, 'pushfile'
+autoload :Mongo, 'mongo'
+autoload :Easymongo, 'easymongo'
 autoload :SuckerPunch, 'sucker_punch'
 autoload :SitemapGenerator, 'sitemap_generator'
 

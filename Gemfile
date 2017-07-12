@@ -9,7 +9,6 @@ gem 'rack-cache'
 gem 'utf8-cleaner'
 gem 'request_store'
 gem 'asset', :require => false
-gem 'minimongo'
 gem 'tilt'
 gem 'mustermann'
 gem 'hash_dot'
@@ -18,6 +17,7 @@ gem 'i18n'
 gem 'sucker_punch', :require => false
 gem 'sitemap_generator', :require => false
 gem 'pushfile', :require => false
+gem 'easymongo', :require => false
 
 group :development, :test do
   gem 'futest'

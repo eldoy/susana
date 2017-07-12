@@ -3,7 +3,7 @@ class App
   include Fuprint::Helpers
 
   class << self
-    attr_accessor :settings, :database, :name, :root, :views, :assets, :env, :map, :routes, :regex, :mail, :sitemap, :debug
+    attr_accessor :settings, :db, :name, :root, :views, :assets, :env, :map, :routes, :regex, :mail, :sitemap, :debug
   end
 
   def initialize(app = nil)
@@ -25,6 +25,7 @@ class App
     # puts "PATH INFO: #{req.path_info}"
 
     # Set up path and locale
+    # TODO: Remove auto-setup of locale
     path = req.path_info.gsub(App.regex.locale, '/')
     I18n.locale = $1 || :en
 

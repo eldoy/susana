@@ -62,7 +62,7 @@ module Susana
         RestClient.post(url, options)
       else
         # Pass job to background processing
-        MailJob.new.async.perform(url, options)
+        MailJob.perform_async(url, options)
       end
 
     end

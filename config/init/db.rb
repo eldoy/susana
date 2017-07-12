@@ -1,12 +1,12 @@
 # Load database settings
-App.database = (YAML.load_file('./config/database.yml') || {})[App.env]
+config = (YAML.load_file('./config/database.yml') || {})[App.env]
 
 # Connect database
-if App.database
+if config
 
   # Read settings or load defaults
-  uri = "#{App.database['url'] || 'localhost'}:#{App.database['port'] || 27017}"
-  name = "#{App.database['name'] || App.name}_#{App.env}"
+  uri = "#{config['url'] || 'localhost'}:#{config['port'] || 27017}"
+  name = "#{config['name'] || App.name}_#{App.env}"
 
   # Set up logger
   # Mongo::Logger.logger.level = ::Logger::INFO
@@ -15,11 +15,10 @@ if App.database
   # Change these to write to log file
   # Mongo::Logger.logger = ::Logger.new('./log/mongo.log')
 
-  # Connect
-  Minimongo.db = Mongo::Client.new([uri], :database => name)
+  # Connect. Use App.db to access database
+  # https://github.com/fugroup/easymongo
+  App.db = Easymongo::Query.new([uri], :database => name)
 
-  # Access db from $db
-  $db = include(Minimongo::Query)
 else
   puts "Database settings not found for #{App.env} in config/database.yml"
 end

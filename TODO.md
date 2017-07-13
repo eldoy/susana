@@ -6,3 +6,8 @@ Remaining items to test / implement:
 * Make gem with binary
 * Generators
 * Scripts
+* Regex routes?
+* Yaml for sitemap?
+* Nicer default page
+* Example controllers
+* Include user resource

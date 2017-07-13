@@ -17,7 +17,7 @@ GEM
     concurrent-ruby (1.0.5)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
-    easymongo (0.0.3)
+    easymongo (0.0.4)
       activesupport (>= 4.0)
       mongo (>= 2.2)
       request_store (>= 1.2)

@@ -2,7 +2,7 @@
 
 Light weight Ruby web application framework based on Rack
 
-**Features:**
+### Features
 - Super fast and light weight
 - Live code reloading
 - Asset packer and helpers
@@ -22,7 +22,7 @@ Light weight Ruby web application framework based on Rack
 - Easy to use and customizable
 
 
-**Installation**
+### Installation
 Susana can be cloned directly from here or installed using rubygems. The default application
 
 Read the [susana gem README](https://github.com/fugroup/susana/blob/master/gem/README.md) to install Susana.

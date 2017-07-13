@@ -27,30 +27,30 @@ Susana can be cloned directly from here or installed using rubygems. The default
 
 Read the [susana gem README](https://github.com/fugroup/susana/blob/master/gem/README.md) to install Susana.
 
-**Philosophy**
+### Philosophy
 Susana is written from scratch on top of Rack, with inspiration from Rails and Sinatra. It's only a few hundred lines of code, but is more complete than Sinatra in that we include a curated collection of gems to provide you with everything you need. Just install, load the app and start coding your views, completely turnkey.
 
 Every app is unique with different requirements. If you want to customize it, you can, we include all the code inside of your application and you can customize every part of it, no code is hidden inside gems. The source code is well documented and easy to understand.
 
-**Configuration**
+### Configuration
 Configuration files are found in the `config` directory. More info is found at the top of each file. The `boot.rb` file loads all of the gems, app files and the files in the `init` directory. The `config.ru` file sets up the middleware and runs the app.
 
-**Locales**
+### Locales
 The language translations are found in `config/locales`. Just add your file and it will be automatically loaded.
 
-**Database**
+### Database
 MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `database.yml` lets you specify the connection. The [Easymongo client](https://github.com/fugroup/easymongo) is already integrated and connects automatically.
 
-**Email**
+### Email
 Mail is sent via [Mailgun](https://mailgun.com) using our client. Set up your `mailgun_api_url` in `settings.yml` and you are ready to send emails. Your email templates are found in `app/views/mail` and also includes layout and support for translations. Mails are sent in the background in a separate thread.
 
-**Code reloading**
+### Code reloading
 Once you start your application, all assets, ruby and yaml files are reloaded automatically so you see your changes immediately without having to restart the application.
 
-**Advanced routes**
+### Advanced routes
 The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in (Sinatra)[http://sinatrarb.com).
 
-**The App**
+### The App
 Settings, database, sitemap, mail and regular expresssions are controlled in the App object, and are accessed using dot syntax. Here are some examples:
 
 ```ruby
@@ -77,7 +77,7 @@ App.mail.hello
 ```
 Check out `lib/susana/app.rb` to see all the things that are included.
 
-**Status**
+### Status
 Everything is working but libraries are new, please report issues. Contributions are welcome.
 
 MIT licensed.

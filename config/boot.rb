@@ -40,7 +40,7 @@ autoload :UTF8Cleaner, 'utf8-cleaner'
 stats.gems
 
 # Load susana
-Dir['./lib/susana/*.rb'].sort.each{|f| require f}
+Dir['./lib/susana/{helpers,*}.rb'].each{|f| require f}
 
 # Set app enviroment
 App.env = env

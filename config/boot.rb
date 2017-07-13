@@ -12,36 +12,29 @@ env = ENV['RACK_ENV'] || 'development'
 require './lib/susana/stats.rb'
 stats = Susana::Stats.new(env).tap(&:welcome)
 
+# Require gems
 require 'bundler/setup'
 groups = [:default]
 groups << :test if env == 'test'
 groups << :development if env == 'development'
 Bundler.require(*groups)
 
+# Active support
+require 'active_support'
+require 'active_support/core_ext'
+
+# Autoload gems
 autoload :Asset, 'asset'
 autoload :Pushfile, 'pushfile'
 autoload :Mongo, 'mongo'
 autoload :Easymongo, 'easymongo'
 autoload :SuckerPunch, 'sucker_punch'
 autoload :SitemapGenerator, 'sitemap_generator'
-
-# Active support
-require 'active_support'
-require 'active_support/core_ext'
-
-# Add dot syntax to Hash
-Hash.use_dot_syntax = true
-
-# Ruby libs
-require 'pp'
-require 'uri'
-require 'time'
-require 'json'
-require 'set'
-require 'net/http'
-require 'net/https'
-require 'erb'
-autoload :CGI, 'cgi'
+autoload :Mustermann, 'mustermann'
+autoload :Tilt, 'tilt'
+autoload :Erubis, 'erubis'
+autoload :RequestStore, 'request_store'
+autoload :UTF8Cleaner, 'utf8-cleaner'
 
 # Record time required to load gems
 stats.gems
@@ -62,7 +55,7 @@ App.views = File.join(App.root, 'app', 'views')
 App.assets = File.join(App.root, 'app', 'assets')
 
 # Load settings
-App.settings = YAML.load_file('./config/settings.yml') || {}
+App.settings = (YAML.load_file('./config/settings.yml') || {}).to_dot
 
 # Set up available regex
 App.regex = Susana::Regex.new

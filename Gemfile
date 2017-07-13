@@ -1,19 +1,18 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-gem 'activesupport'
 gem 'rack'
 gem 'rack-contrib'
-gem 'rack-flash3', :require => 'rack-flash'
 gem 'rack-cache'
-gem 'utf8-cleaner'
-gem 'request_store'
-gem 'asset', :require => false
-gem 'tilt'
-gem 'mustermann'
+gem 'rack-flash3', :require => 'rack-flash'
+gem 'activesupport'
 gem 'hash_dot'
-gem 'erubis'
-gem 'i18n'
+gem 'utf8-cleaner', :require => false
+gem 'request_store', :require => false
+gem 'asset', :require => false
+gem 'mustermann', :require => false
+gem 'tilt', :require => false
+gem 'erubis', :require => false
 gem 'sucker_punch', :require => false
 gem 'sitemap_generator', :require => false
 gem 'pushfile', :require => false
@@ -21,7 +20,7 @@ gem 'easymongo', :require => false
 
 group :development, :test do
   gem 'futest'
-  gem 'fuprint', :git => 'https://github.com/fugroup/fuprint.git'
+  gem 'fuprint'
 end
 
 group :development do

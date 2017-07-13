@@ -25,16 +25,14 @@ class App
     # puts "PATH INFO: #{req.path_info}"
 
     # Set up path and locale
-    # TODO: Remove auto-setup of locale
-    path = req.path_info.gsub(App.regex.locale, '/')
+    req.path_info =~ App.regex.locale
     I18n.locale = $1 || :en
 
-    # puts "PATH: #{path}"
     # puts "LOCALE: #{I18n.locale}"
 
     # Match a route
     routes = App.map[req.request_method] || []; match = nil
-    route = routes.find{|r| match = r[0].params(path)}
+    route = routes.find{|r| match = r[0].params(req.path_info)}
 
     if match
       # puts "FOUND: #{route[1]}##{route[2]} - #{match.inspect}"

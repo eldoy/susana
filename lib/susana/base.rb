@@ -9,11 +9,11 @@ module Susana
       self.req = req
       self.res = res
       self.env = env
-      self.params = req.params
+      self.params = HashWithIndifferentAccess.new(req.params)
       self.cookies = Susana::Cookies.new(req, res)
       self.session = env['rack.session']
       self.flash = env['x-rack.flash']
-      self.errors = Hash.new{|h, k| h[k] = []}
+      self.errors = HashWithIndifferentAccess.new{|h, k| h[k] = []}
     end
 
     # Convenience for request and response objects

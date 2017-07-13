@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'susana'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.executables << 'susana'
   s.date        = '2017-07-13'
   s.summary     = "Susana ruby web application framework"

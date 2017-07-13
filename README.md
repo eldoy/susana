@@ -30,7 +30,7 @@ Read the [susana gem README](https://github.com/fugroup/susana/blob/master/gem/R
 ### Philosophy
 Susana is written from scratch on top of Rack, with inspiration from Rails and Sinatra. It's only a few hundred lines of code, but is more complete than Sinatra in that we include a curated collection of gems to provide you with everything you need. Just install, load the app and start coding your views, completely turnkey.
 
-Every app is unique with different requirements. If you want to customize it, you can, we include all the code inside of your application and you can customize every part of it, no code is hidden inside gems. The source code is well documented and easy to understand.
+Every app is unique with different requirements. If you want to customize it, you can. We include all the code inside of your application and you can customize every part of it, no code is hidden inside gems. The source code is well documented and easy to understand.
 
 ### Configuration
 Configuration files are found in the `config` directory. More info is found at the top of each file. The `boot.rb` file loads all of the gems, app files and the files in the `init` directory. The `config.ru` file sets up the middleware and runs the app.
@@ -49,6 +49,24 @@ Once you start your application, all assets, ruby and yaml files are reloaded au
 
 ### Advanced routes
 The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in (Sinatra)[http://sinatrarb.com).
+
+### Models
+The default Susana application doesn't use models as in a traditional MVC pattern, but you can add it if you want. The model files can be added to `app/models` and are automatically loaded. If you're looking for a fresh database ORM, take a look at [Mongocore](https://github.com/fugroup/mongocore).
+
+### Validations and filters
+Validations are included as modules in `app/validations`. This is because we want to validate the parameters instead of letting the model handle it. You can use the `errors` hash to add your errors, and use it in the controllers after:
+```ruby
+# In the validation module
+def user_validation
+  errors[:name] << 'Name is too short' if params[:name].blank?
+end
+
+# In the controller call the validation, then user the errors hash
+user_validation
+halt json(errors) if errors.any?
+```
+
+The filters work in the same way, and are intended for redirecting, setup or access control.
 
 ### The App
 Settings, database, sitemap, mail and regular expresssions are controlled in the App object, and are accessed using dot syntax. Here are some examples:
@@ -75,6 +93,7 @@ App.mail.hello
 # Use a regular expression
 'file.jpg' => App.regex.image
 ```
+
 Check out `lib/susana/app.rb` to see all the things that are included.
 
 ### Status

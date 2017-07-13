@@ -34,7 +34,7 @@ app = Rack::Builder.new do
   use Rack::Session::Cookie,
     :path => '/',
     :expire_after => 2592000,
-    :secret => '98796b2a7d85ca6fa58b4706379a0fece0db3a63d284743969b0e'
+    :secret => 'a8976c0df4fb8a28f8fe979270443d37f239cf8da8f1bf9734ba'
 
   # Set up flash
   use Rack::Flash

@@ -37,5 +37,8 @@ file = File.read("config.ru").gsub(key, secret)
 File.open("config.ru", 'w'){|f| f.write(file)}
 
 puts "\nApp #{name} created, please review your settings in the config directory\n\n"
-puts "To start the application, go to the #{name} directory and run 'puma'\n"
+puts "To start the application:\n\n"
+puts "cd #{name}"
+puts "bundle install"
+puts "puma\n\n"
 puts "Go to https://github.com/fugroup/susana for documentation\n\n"

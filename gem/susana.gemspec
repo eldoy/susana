@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'susana'
-  s.version     = '0.0.1'
-  s.executables = ['susana.rb']
+  s.version     = '0.0.2'
+  s.executables << 'susana'
   s.date        = '2017-07-13'
   s.summary     = "Susana ruby web application framework"
   s.description = "Light weight and fast web application framework. Everything you need to build apps and APIs."

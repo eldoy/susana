@@ -23,7 +23,7 @@ Light weight Ruby web application framework based on Rack
 
 
 ### Installation
-Susana can be cloned directly from here or installed using rubygems. The default application
+Susana can be cloned directly from here or installed using rubygems.
 
 Read the [susana gem README](https://github.com/fugroup/susana/blob/master/gem/README.md) to install Susana.
 

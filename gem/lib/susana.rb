@@ -27,6 +27,10 @@ dir = Dir.pwd
 # Change working dir
 Dir.chdir(name)
 
+# Cleanup
+`rm -rf .git`
+`rm -rf gem`
+
 # Create cookie secret
 secret = SecureRandom::hex(26)
 

@@ -33,7 +33,7 @@ Susana is written from scratch on top of Rack, with inspiration from Rails and S
 Every app is unique with different requirements. If you want to customize it, you can. We include all the code inside of your application and you can customize every part of it, no code is hidden inside gems. The source code is well documented and easy to understand.
 
 ### Configuration
-Configuration files are found in the `config` directory. More info is found at the top of each file. The `boot.rb` file loads all of the gems, app files and the files in the `init` directory. The `config.ru` file sets up the middleware and runs the app.
+Configuration files are found in the `config` directory. More info is found at the top of each file. The `config/boot.rb` file loads all of the gems, app files and the files in the `config/init` directory. The `config.ru` file sets up the middleware and runs the app.
 
 ### Locales and sitemap
 The language translations are found in `config/locales`. Just add your file and it will be automatically loaded. Emails, routes and sitemap supports translations out of the box. For the routes, just add a `/lang/` in front of the path. The sitemap entries can be added in `lib/susana/sitemap.rb`.
@@ -50,20 +50,78 @@ Once you start your application, all assets, ruby and yaml files are reloaded au
 ### Advanced routes
 The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in [Sinatra](http://sinatrarb.com).
 
+### Controllers
+Each controller inherits from the application controller and has actions that are are mapped from the routes. You can access all of Rack's environment from here, in addition to session, cookie, flash and error objects.
+```ruby
+# Rack request
+req
+https://github.com/rack/rack/blob/master/lib/rack/request.rb
+
+# You can leave out req. when calling methods
+redirect('/')
+
+# Rack response
+res
+https://github.com/rack/rack/blob/master/lib/rack/response.rb
+
+# No need to write res. in front
+headers['Content-Type', 'application/json']
+
+# Rack environment hash
+env
+
+# Parameter hash
+p
+p[:name] => 'Winship'
+
+# Session hash, secure cookies
+s
+s[:user] = user.key
+
+# Cookies, normal cookies
+c
+c[:dialog] = 'login'
+
+# Flash message hash
+f
+f[:info] = 'Logged in'
+f[:error] = 'Please correct the errors belows'
+
+# Error object
+e
+e.add(:name, 'Too short')
+e.short
+e.flat
+e.full
+e.any?
+e.empty?
+```
+
+### Views and helpers
+There is built in support for ERB, but you can easily add your own helpers. The helper modules go in the `app/helpers` directory and are automatically included and available in both controllers and views. There is support for layouts in the views as well. Add your layouts in `app/views/layout`.
+```ruby
+# Erb with layout. Your erb file should end with .erb
+erb('root/home', :layout => 'default')
+
+# Erb without layout, useful for partials from within other erb files
+erb('root/home')
+```
+We've included some other useful helpers in `lib/susana/helpers.rb` as well.
+
 ### Models
 The default Susana application doesn't use models as in a traditional MVC pattern, but you can add it if you want. The model files can be added to `app/models` and are automatically loaded. If you're looking for a fresh database ORM, take a look at [Mongocore](https://github.com/fugroup/mongocore).
 
 ### Validations and filters
-Validations are included as modules in `app/validations`. This is because we want to validate the parameters instead of letting the model handle it. You can use the `errors` hash to add your errors, and use it in the controllers after:
+Validations are included as modules in `app/validations`. This is because we want to validate the parameters instead of letting the model handle it. You can use the `e` object to add your errors, and use it in the controllers after:
 ```ruby
 # In the validation module
 def user_validation
-  errors[:name] << 'Name is too short' if params[:name].blank?
+  e.add(:name, 'Name is too short') if p[:name].blank?
 end
 
 # In the controller call the validation, then user the errors hash
 user_validation
-halt json(errors) if errors.any?
+halt json(errors) if e.any?
 ```
 
 The filters work in the same way, and are intended for redirecting, setup or access control.

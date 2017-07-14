@@ -16,6 +16,12 @@ module Susana
       layout.render(self, options[:locals]) { render }
     end
 
+    # Convert to JSON and set content type
+    def json(data)
+      headers['Content-Type', 'application/json']
+      data.to_json
+    end
+
     # Basic auth
     def protect!
       return if authorized?

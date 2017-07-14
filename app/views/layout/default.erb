@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @title || 'Hello' %></title>
+  <title><%= @title || 'Hello' %> | Susana</title>
+  <meta charset="UTF-8">
+  <link href="/images/favicon.png" rel="shortcut icon">
   <%= style_tag 'bundle.css' %>
 </head>
 <body>
+  <section class="top">
+    <div class="logo">
+      <a href="/"><img src="/images/logo.png"></a>
+    </div>
+    <nav>
+      <% if current_user %>
+        <span class="info">
+          <%= current_user.email %>
+        </span>
+        <a href="/logout">Logout</a>
+      <% else %>
+        <a href="/signup">Signup</a>
+        <a href="/login">Login</a>
+      <% end %>
+    </nav>
+  </section>
+  <main>
+    <% if f[:info] %><div class="flash flash-info"><%= f[:info] %></div><% end %>
+    <% if f[:error] %><div class="flash flash-error"><%= f[:error] %></div><% end %>
+    <%= yield %>
+  </main>
   <%= script_tag 'bundle.js' %>
-  <%= yield %>
 </body>
 </html>

@@ -111,6 +111,9 @@ We've included some other useful helpers in `lib/susana/helpers.rb` as well.
 ### Models
 The default Susana application doesn't use models as in a traditional MVC pattern, but you can add it if you want. The model files can be added to `app/models` and are automatically loaded. If you're looking for a fresh database ORM, take a look at [Mongocore](https://github.com/fugroup/mongocore).
 
+### Background queue
+The `lib/jobs` directory includes your background tasks. They are based on the [sucker_punch gem](https://github.com/brandonhilkert/sucker_punch) and works in a separate thread to make your long running tasks seem faster.
+
 ### Validations and filters
 Validations are included as modules in `app/validations`. This is because we want to validate the parameters instead of letting the model handle it. You can use the `e` object to add your errors, and use it in the controllers after:
 ```ruby

@@ -5,7 +5,7 @@ module Susana
 
     # Add language in front of the path to translate
     def locale
-      %r{^\/(#{(I18n.available_locales - [I18n.default_locale]).join('|')})}
+      @locale ||= %r{^\/(#{(I18n.available_locales | [I18n.default_locale]).join('|')})\/}
     end
 
     # Image regexp, full url including protocol

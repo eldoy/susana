@@ -8,6 +8,16 @@ module Susana
       self.r = HashWithIndifferentAccess.new{|h, k| h[k] = []}
     end
 
+    # Access field
+    def [](key)
+      r[key]
+    end
+
+    # Join fields
+    def join(key, sep = ', ')
+      r[key].join(sep)
+    end
+
     # Add errors
     def add(key, message)
       r[key] << message

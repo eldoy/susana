@@ -1,27 +1,3 @@
 root#home:
   desc: Home page
-  method: get
-  path: '/'
-  filters: []
-  validations: []
-
-root#login:
-  desc: User login
-  method: get
-  path: '/login'
-  filters: []
-  validations: []
-
-root#user:
-  desc: User create
-  method: post
-  path: '/user/:name'
-  filters: []
-  validations: []
-
-root#user:
-  desc: User get
-  method: get
-  path: '/user/:name'
-  filters: []
-  validations: []
+  path: /

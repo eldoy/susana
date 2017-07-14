@@ -1,0 +1,21 @@
+user#signup:
+  desc: User signup
+  path: /signup
+
+user#create:
+  desc: User create
+  path: /create
+  method: post
+
+user#login:
+  desc: User login
+  path: /login
+
+user#session:
+  desc: User session
+  path: /session
+  method: post
+
+user#logout:
+  desc: User logout
+  path: /logout

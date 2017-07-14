@@ -37,7 +37,7 @@ app = Rack::Builder.new do
     :secret => 'a8976c0df4fb8a28f8fe979270443d37f239cf8da8f1bf9734ba'
 
   # Set up flash
-  use Rack::Flash
+  use Rack::Flash, :sweep => true
 
   # Extract parameters from post body
   use Rack::PostBodyContentTypeParser

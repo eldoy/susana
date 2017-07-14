@@ -1,0 +1,24 @@
+<% @title = 'Login' %>
+
+<section class="login">
+  <h2>Login</h2>
+  <form action="/session" method="POST">
+    <p>
+      <label>
+        Email
+        <br>
+        <input type="text" name="email" value="<%= p[:email] %>">
+      </label>
+    </p>
+    <p>
+      <label>
+        Password
+        <br>
+        <input type="password" name="password">
+      </label>
+    </p>
+    <p>
+      <button>Log in</button>
+    </p>
+  </form>
+</section>

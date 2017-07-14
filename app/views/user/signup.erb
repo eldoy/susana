@@ -1,0 +1,38 @@
+<section class="signup">
+  <h2>Signup</h2>
+  <form action="/create" method="POST">
+    <p>
+      <label>
+        Email
+        <br>
+        <input type="text" name="email" value="<%= p[:email] %>">
+      </label>
+      <% if e[:email] %>
+        <div class="error"><%= e.join(:email) %></div>
+      <% end %>
+    </p>
+    <p>
+      <label>
+        Password
+        <br>
+        <input type="password" name="password">
+      </label>
+      <% if e[:password] %>
+        <div class="error"><%= e.join(:password) %></div>
+      <% end %>
+    </p>
+    <p>
+      <label>
+        Confirm
+        <br>
+        <input type="password" name="confirm">
+      </label>
+      <% if e[:confirm] %>
+        <div class="error"><%= e.join(:confirm) %></div>
+      <% end %>
+    </p>
+    <p>
+      <button>Sign up</button>
+    </p>
+  </form>
+</section>

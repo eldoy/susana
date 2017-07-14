@@ -165,7 +165,7 @@ def user_validation
   e.add(:name, 'Name is too short') if p[:name].blank?
 end
 
-# In the controller call the validation, then user the errors hash
+# In the controller call the validation, and then we can use the errors hash
 user_validation
 halt json(errors) if e.any?
 ```

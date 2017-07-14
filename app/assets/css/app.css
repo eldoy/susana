@@ -102,6 +102,6 @@ aside img {
 }
 
 /* Login / Signup */
-div.error {
+div.field-error {
   color: red;
 }

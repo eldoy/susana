@@ -7,9 +7,7 @@
         <br>
         <input type="text" name="email" value="<%= p[:email] %>">
       </label>
-      <% if e[:email] %>
-        <div class="error"><%= e.join(:email) %></div>
-      <% end %>
+      <%= r(:email) %>
     </p>
     <p>
       <label>
@@ -17,9 +15,7 @@
         <br>
         <input type="password" name="password">
       </label>
-      <% if e[:password] %>
-        <div class="error"><%= e.join(:password) %></div>
-      <% end %>
+      <%= r(:password) %>
     </p>
     <p>
       <label>
@@ -27,9 +23,7 @@
         <br>
         <input type="password" name="confirm">
       </label>
-      <% if e[:confirm] %>
-        <div class="error"><%= e.join(:confirm) %></div>
-      <% end %>
+      <%= r(:confirm) %>
     </p>
     <p>
       <button>Sign up</button>

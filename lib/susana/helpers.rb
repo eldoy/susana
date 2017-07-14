@@ -47,5 +47,10 @@ module Susana
     def t(*args); I18n.t(*args); end
     def l(*args); I18n.l(*args); end
 
+    # Error helper
+    # Error helper
+    def r(key)
+      %{<div class="field-error">#{e.join(key)}</div>} if e[key]
+    end
   end
 end

@@ -93,6 +93,8 @@ f[:error] = 'Please correct the errors belows'
 # Error object
 e
 e.add(:name, 'Too short')
+e[:name]
+e.join(:name)
 e.short
 e.flat
 e.full
@@ -167,7 +169,7 @@ App.mail.hello
 App.store[:count] = 1
 ```
 
-Check out `lib/susana/app.rb` to see all the things that are included.
+Check out `lib/susana/app.rb` to see all the things that are included. You will love making apps with Susana.
 
 ### Status
 Everything is working but libraries are new, please report issues. Contributions are welcome.

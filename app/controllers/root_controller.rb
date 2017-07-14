@@ -1,12 +1,12 @@
 class RootController < ApplicationController
 
   def home
-    cookie(:user, 'hello')
+    c['user'] = 'hello'
     erb('root/home', :layout => 'default')
   end
 
   def login
-    session[:user]
+    session[:user] = '1'
   end
 
   def user

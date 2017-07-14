@@ -27,3 +27,7 @@ group :development do
   gem 'puma'
   gem 'listen'
 end
+
+group :test do
+  gem 'rerun'
+end

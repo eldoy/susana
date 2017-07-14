@@ -3,17 +3,18 @@ module Susana
 
     include Asset::Helpers, Susana::Helpers
 
-    attr_accessor :req, :res, :env, :params, :errors, :session, :flash
+    attr_accessor :req, :res, :env, :p, :e, :s, :c, :f
 
     # Set up controller data
     def initialize(req, res, env)
       self.req = req
       self.res = res
       self.env = env
-      self.params = HashWithIndifferentAccess.new(req.params)
-      self.errors = HashWithIndifferentAccess.new{|h, k| h[k] = []}
-      self.session = env['rack.session']
-      self.flash = env['x-rack.flash']
+      self.p = HashWithIndifferentAccess.new(req.params)
+      self.e = Susana::Error.new
+      self.s = env['rack.session']
+      self.c = Susana::Cookie.new(req, res)
+      self.f = env['x-rack.flash']
     end
 
     # Access request and response objects

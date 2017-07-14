@@ -1,7 +1,7 @@
 <h1>Hello</h1>
-<p>Params: <%= params %></p>
+<p>Params: <%= p %></p>
 <p>Date: <%= l(Time.now) %></p>
 <p>Locale: <%= t(:hello) %> (<%= I18n.locale %>)</p>
-<p>Session: <%= session[:user] %></p>
-<p>Cookies: <%= cookie(:user) %></p>
+<p>Session: <%= s[:user] %></p>
+<p>Cookies: <%= c[:user] %></p>
 <p><%= env.dup %></p>

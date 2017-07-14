@@ -1,6 +1,6 @@
 # Load routes
 
-require './config/boot'
+test 'routes'
 
 # Load routes
 ROUTES = {}

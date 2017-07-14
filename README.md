@@ -148,6 +148,7 @@ l(Time.now)
 
 # HTTP Basic login protection, add to top of controller action
 protect!
+# Set your username and password in config/settings.yml
 ```
 
 ### Models

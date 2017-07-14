@@ -23,7 +23,7 @@ Light weight Ruby web application framework based on Rack
 
 
 ### Installation
-Susana can be cloned directly from here or installed using rubygems. You need ruby, mongodb and optionally graphicsmagick to run the default application.
+Susana can be cloned directly from here or installed using rubygems. You need ruby, mongodb and optionally graphicsmagick to run the default application. The default application comes complete with a few routes and user login.
 
 Read the [susana gem README](https://github.com/fugroup/susana/blob/master/gem/README.md) to install Susana.
 
@@ -55,14 +55,14 @@ Each controller inherits from the application controller and has actions that ar
 ```ruby
 # Rack request
 req
-https://github.com/rack/rack/blob/master/lib/rack/request.rb
+# https://github.com/rack/rack/blob/master/lib/rack/request.rb
 
 # You can leave out req. when calling methods
-redirect('/')
+redirect('/') instead of req.redirect('/')
 
 # Rack response
 res
-https://github.com/rack/rack/blob/master/lib/rack/response.rb
+# https://github.com/rack/rack/blob/master/lib/rack/response.rb
 
 # No need to write res. in front
 headers['Content-Type', 'application/json']
@@ -72,15 +72,18 @@ env
 
 # Parameter hash
 p
-p[:name] => 'Winship'
+p[:name] = 'Winship'
+p[:name]
 
 # Session hash, secure cookies
 s
 s[:user] = user.key
+s[:user]
 
 # Cookies, normal cookies
 c
 c[:dialog] = 'login'
+c[:dialog]
 
 # Flash message hash
 f

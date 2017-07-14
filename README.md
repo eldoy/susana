@@ -156,6 +156,9 @@ App.mail.hello
 
 # Use a regular expression
 'file.jpg' => App.regex.image
+
+# Threaded request store
+App.store[:count] = 1
 ```
 
 Check out `lib/susana/app.rb` to see all the things that are included.

@@ -63,6 +63,9 @@ App.regex = Susana::Regex.new
 # Set up mail
 App.mail = Susana::Mail.new
 
+# Set up request store
+App.store = RequestStore.store
+
 # Set up sitemap and write
 App.sitemap = Susana::Sitemap.new
 

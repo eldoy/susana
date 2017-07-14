@@ -3,7 +3,7 @@ class App
   include Fuprint::Helpers
 
   class << self
-    attr_accessor :settings, :db, :name, :root, :views, :assets, :env, :map, :routes, :regex, :mail, :sitemap, :debug
+    attr_accessor :settings, :db, :name, :root, :views, :assets, :env, :map, :routes, :regex, :mail, :sitemap, :store, :debug
   end
 
   def initialize(app = nil)
@@ -24,7 +24,7 @@ class App
     # puts "REQUEST METHOD: #{req.request_method}"
     # puts "PATH INFO: #{req.path_info}"
 
-    # Set up path and locale
+    # Set up locale
     req.path_info =~ App.regex.locale
     I18n.locale = $1 || :en
 

@@ -36,7 +36,7 @@ Every app is unique with different requirements. If you want to customize it, yo
 Configuration files are found in the `config` directory. More info is found at the top of each file. The `config/boot.rb` file loads all of the gems, app files and the files in the `config/init` directory. The `config.ru` file sets up the middleware and runs the app.
 
 ### Locales and sitemap
-The language translations are found in `config/locales`. Just add your file and it will be automatically loaded. Emails, routes and sitemap supports translations out of the box. For the routes, just add a `/lang/` in front of the path. The sitemap entries can be added in `lib/susana/sitemap.rb`.
+The language translations are found in `config/locales`. Just add your file and it will be automatically loaded. Emails, routes and sitemap supports translations out of the box. For the routes, just add your two-character language, i.e. `/no`, `/es`, `ru`, in front of the path. The sitemap entries can be added in `lib/susana/sitemap.rb`.
 
 ### Database
 MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `config/database.yml` lets you specify the connection. The [Easymongo client](https://github.com/fugroup/easymongo) is already integrated and connects automatically. Using a database has never been this easy.
@@ -51,7 +51,7 @@ Once you start your application, all assets, ruby and yaml files are reloaded au
 The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in [Sinatra](http://sinatrarb.com).
 
 ### Controllers
-Each controller inherits from the application controller and has actions that are are mapped from the routes. You can access all of Rack's environment from here, in addition to session, cookie, flash and error objects.
+Each controller inherits from the application controller and has actions that are are mapped from the routes. You can access the Rack request, response and environment from here, in addition to session, cookie, flash and error objects.
 ```ruby
 # Rack request
 req
@@ -132,7 +132,7 @@ user_validation
 halt json(errors) if e.any?
 ```
 
-The filters work in the same way, and are intended for redirecting, setup or access control.
+The filters work in the same way, and are intended for redirecting, setup or access control. They are usually run before the validations.
 
 ### Assets
 Your assets live in `app/assets` and are served by our [asset middleware](https://github.com/fugroup/asset). This asset manager compresses your CSS and Javascript in production, and makes sure your images are served fast as well.

@@ -48,7 +48,26 @@ Mail is sent via [Mailgun](https://mailgun.com) using our client. Set up your `m
 Once you start your application, all assets, ruby and yaml files are reloaded automatically so you see your changes immediately without having to restart the application. We've added autoload on most of the libraries included, so startup is fast as well.
 
 ### Advanced routes
-The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in [Sinatra](http://sinatrarb.com).
+The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in [Sinatra](http://sinatrarb.com). Here are some routes:
+```yaml
+# Maps to root controller, 'home' method
+root#home:
+  desc: App home
+  path: /
+  method: get   # Get is default, no needed
+
+# Maps to project controller, 'show' method
+project#show:
+  desc: Project show
+  path: /project/:id
+
+# Maps to user controller, 'session' method
+user#session:
+  desc: User session
+  path: /session
+  method: post
+```
+Currently only `get` and `post` is supported.
 
 ### Controllers
 Each controller inherits from the application controller and has actions that are are mapped from the routes. You can access the Rack request, response and environment from here, in addition to session, cookie, flash and error objects.

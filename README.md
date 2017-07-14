@@ -39,13 +39,13 @@ Configuration files are found in the `config` directory. More info is found at t
 The language translations are found in `config/locales`. Just add your file and it will be automatically loaded. Emails, routes and sitemap supports translations out of the box. For the routes, just add a `/lang/` in front of the path. The sitemap entries can be added in `lib/susana/sitemap.rb`.
 
 ### Database
-MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `database.yml` lets you specify the connection. The [Easymongo client](https://github.com/fugroup/easymongo) is already integrated and connects automatically. Using a database has never been this easy.
+MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `config/database.yml` lets you specify the connection. The [Easymongo client](https://github.com/fugroup/easymongo) is already integrated and connects automatically. Using a database has never been this easy.
 
 ### Email
 Mail is sent via [Mailgun](https://mailgun.com) using our client. Set up your `mailgun_api_url` in `settings.yml` and you are ready to send emails. Your email templates are found in `app/views/mail` and also includes layout and support for translations. Mails are sent in the background in a separate thread.
 
 ### Code reloading
-Once you start your application, all assets, ruby and yaml files are reloaded automatically so you see your changes immediately without having to restart the application.
+Once you start your application, all assets, ruby and yaml files are reloaded automatically so you see your changes immediately without having to restart the application. We've added autoload on most of the libraries included, so startup is fast as well.
 
 ### Advanced routes
 The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in [Sinatra](http://sinatrarb.com).

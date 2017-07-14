@@ -48,26 +48,26 @@ Mail is sent via [Mailgun](https://mailgun.com) using our client. Set up your `m
 Once you start your application, all assets, ruby and yaml files are reloaded automatically so you see your changes immediately without having to restart the application. We've added autoload on most of the libraries included, so startup is fast as well.
 
 ### Advanced routes
-The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in [Sinatra](http://sinatrarb.com). Here are some routes:
+The routes are found in `app/routes` and are yaml files that specify which controller and action belongs to a path. The path matchers are the same as used in [Sinatra](http://sinatrarb.com). Here are some example routes:
 ```yaml
-# Maps to root controller, 'home' method
+# Maps to root controller home action
 root#home:
   desc: App home
   path: /
-  method: get   # Get is default, no needed
+  method: get   # Get is default, not needed
 
-# Maps to project controller, 'show' method
+# Maps to project controller show action
 project#show:
   desc: Project show
   path: /project/:id
 
-# Maps to user controller, 'session' method
+# Maps to user controller session action
 user#session:
   desc: User session
   path: /session
   method: post
 ```
-Currently only `get` and `post` is supported.
+Currently only `get` and `post` are supported.
 
 ### Controllers
 Each controller inherits from the application controller and has actions that are are mapped from the routes. You can access the Rack request, response and environment from here, in addition to session, cookie, flash and error objects.
@@ -131,6 +131,24 @@ erb('root/home', :layout => 'default')
 erb('root/home')
 ```
 We've included some other useful helpers in `lib/susana/helpers.rb` as well.
+```ruby
+# Convert to json and set correct content type. Perfect for API's or ajax.
+json(:name => p[:name])
+
+# Immediately stop execution and write response
+halt(200)
+halt(404, "Not found\n")
+halt("World amazing.")
+
+# Translations
+t('user.login.name')
+
+# Time localizations
+l(Time.now)
+
+# HTTP Basic login protection, add to top of controller action
+protect!
+```
 
 ### Models
 The default Susana application doesn't use models as in a traditional MVC pattern, but you can add it if you want. The model files can be added to `app/models` and are automatically loaded. If you're looking for a fresh database ORM, take a look at [Mongocore](https://github.com/fugroup/mongocore).

@@ -23,7 +23,7 @@ Light weight Ruby web application framework based on Rack
 
 
 ### Installation
-Susana can be cloned directly from here or installed using rubygems.
+Susana can be cloned directly from here or installed using rubygems. You need ruby, mongodb and optionally graphicsmagick to run the default application.
 
 Read the [susana gem README](https://github.com/fugroup/susana/blob/master/gem/README.md) to install Susana.
 
@@ -125,6 +125,12 @@ halt json(errors) if e.any?
 ```
 
 The filters work in the same way, and are intended for redirecting, setup or access control.
+
+### Assets
+Your assets live in `app/assets` and are served by our [asset middleware](https://github.com/fugroup/asset). This asset manager compresses your CSS and Javascript in production, and makes sure your images are served fast as well.
+
+### Uploads
+We've included the [pushfile gem](https://github.com/fugroup/pushfile) for file uploads. Set up your account info in `config/pushfile.yml` to upload files to Amazon or Rackspace. Images are resized automatically using GraphicsMagick.
 
 ### The App
 Settings, database, sitemap, mail and regular expresssions are controlled in the App object, and are accessed using dot syntax. Here are some examples:

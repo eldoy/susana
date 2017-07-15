@@ -57,6 +57,7 @@ root#home:
   method: get   # Get is default, not needed
 
 # Maps to project controller show action
+# The :id will give you a p[:id] parameter in the controller
 project#show:
   desc: Project show
   path: /project/:id
@@ -119,13 +120,16 @@ e.flat
 e.full
 e.any?
 e.empty?
+
+# View helper for errors
+r(:name)
 ```
 
 ### Views and helpers
 There is built in support for ERB, but you can easily add your own helpers. The helper modules go in the `app/helpers` directory and are automatically included and available in both controllers and views. There is support for layouts in the views as well. Add your layouts in `app/views/layout`.
 ```ruby
 # Erb with layout. Your erb file should end with .erb
-erb('root/home', :layout => 'default')
+erb('root/home', :layout => :default)
 
 # Erb without layout, useful for partials from within other erb files
 erb('root/home')

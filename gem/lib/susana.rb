@@ -40,5 +40,6 @@ puts "\nApp #{name} created, please review your settings in the config directory
 puts "To start the application:\n\n"
 puts "cd #{name}"
 puts "bundle install"
-puts "puma\n\n"
+puts "bundle exec puma\n\n"
+puts "Open http://localhost:9292 in your browser. Enjoy!\n\n"
 puts "Go to https://github.com/fugroup/susana for documentation\n\n"

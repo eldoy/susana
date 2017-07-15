@@ -19,12 +19,12 @@ cd your_app_name
 bundle install
 
 # Start web server
-puma
+bundle exec puma
 
 # Open application in web browser
 http://localhost:9292
 ```
-That's it! You now have a fully working app.
+That's it! You now have a fully working app ready to be developed.
 
 Now head back to [the documentation](https://github.com/fugroup/susana) to find out about the features, or read the well commented source code. It's only a few hundred lines of code.
 

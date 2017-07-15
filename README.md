@@ -68,7 +68,7 @@ user#session:
   path: /session
   method: post
 ```
-Currently only `get` and `post` are supported.
+Any method is supported, including `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `PATCH`, just add a `_method` parameter to your requests.
 
 ### Controllers
 Each controller inherits from the application controller and has actions that are are mapped from the routes. You can access the Rack request, response and environment from here, in addition to session, cookie, flash and error objects.

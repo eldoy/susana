@@ -27,6 +27,9 @@ app = Rack::Builder.new do
       :verbose => false
   end
 
+  # Enable support for Rest parameters using _method
+  use Rack::MethodOverride
+
   # Set up asset router for js and css
   use Asset::Router
 

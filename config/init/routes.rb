@@ -11,8 +11,9 @@ Dir['./app/routes/*.yml'].sort.each do |f|
 end
 
 # Load lookup map
-App.map = {'GET' => [], 'POST' => []}
+App.map = Hash.new{|h, k| h[k] = []}
 
+# Load routes and precompile route matcher
 App.routes.each do |k, v|
   App.map[v['method']] << [Mustermann.new(v['path'])] + k.split('#')
 end

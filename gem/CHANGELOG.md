@@ -1,3 +1,3 @@
-**Version 0.0.4** - *2017-07-13*
+**Version 0.0.6** - *2017-07-15*
 
 - Initial version of install script

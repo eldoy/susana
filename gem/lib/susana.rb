@@ -25,16 +25,16 @@ end
 FileUtils.cd(name)
 
 # Cleanup
-FileUtils.remove_dir(".git")
-FileUtils.remove_dir("gem")
+FileUtils.remove_dir('.git')
+FileUtils.remove_dir('gem')
 
 # Create cookie secret
-secret = SecureRandom::hex(26)
+secret = SecureRandom.hex(32)
 
 # Install secret
-key = 'a8976c0df4fb8a28f8fe979270443d37f239cf8da8f1bf9734ba'
-file = File.read("config.ru").gsub(key, secret)
-File.open("config.ru", 'w'){|f| f.write(file)}
+key = '1eca29037f08b783cee7e77a958e01a4c7f2fa7dd9be61171709cf3e5f54ef65'
+file = File.read('config.ru').gsub(key, secret)
+File.open('config.ru', 'w'){|f| f.write(file)}
 
 puts "\nApp #{name} created, please review your settings in the config directory\n\n"
 puts "To start the application:\n\n"

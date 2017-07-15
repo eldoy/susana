@@ -36,7 +36,7 @@ Every app is unique with different requirements. If you want to customize it, yo
 Configuration files are found in the `config` directory. More info is found at the top of each file. The `config/boot.rb` file loads all of the gems, app files and the files in the `config/init` directory. The `config.ru` file sets up the middleware and runs the app.
 
 ### Locales and sitemap
-The language translations are found in `config/locales`. Just add your file and it will be automatically loaded. Emails, routes and sitemap supports translations out of the box. For the routes, just add your two-character language, i.e. `/no`, `/es`, `ru`, in front of the path. The sitemap entries can be added in `lib/susana/sitemap.rb`.
+The language translations are found in `config/locales`. Just add your file and it will be automatically loaded. Emails, routes and sitemap supports translations out of the box. For the routes, just add your two-character language, i.e. `/no`, `/es`, `/ru`, in front of the path. The sitemap entries can be added in `lib/susana/sitemap.rb`. Have a look at the sitemap section in `config/boot.rb` for options.
 
 ### Database
 MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `config/database.yml` lets you specify the connection. The [Easymongo client](https://github.com/fugroup/easymongo) is already integrated and connects automatically. Using a database has never been this easy.

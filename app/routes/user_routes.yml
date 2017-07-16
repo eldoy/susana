@@ -19,3 +19,17 @@ user#session:
 user#logout:
   desc: User logout
   path: /logout
+
+user#settings:
+  desc: User settings
+  path: /settings
+
+user#update:
+  desc: User update
+  path: /update
+  method: put
+
+user#password:
+  desc: User password
+  path: /password
+  method: put

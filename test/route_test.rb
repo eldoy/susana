@@ -86,7 +86,3 @@ end
 #   path: '/'
 #   filters: []
 #   validations: []
-#   params:
-#     name:
-#       write: all
-#       read: all

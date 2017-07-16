@@ -32,6 +32,7 @@ button {
   background-color: steelblue;
   color: white;
   padding: 0.5em 1em;
+  font-size: 85%;
 }
 
 .info {
@@ -72,17 +73,18 @@ nav a {
 }
 
 div.flash {
-  text-align: center;
   width: 100%;
-  padding: 0.3em 0;
+  padding: 0.5em;
+  font-size: 90%;
+  border-radius: 3px;
 }
 
 div.flash-info {
-  background-color: yellow;
+  background-color: #ffffcc;
 }
 
 div.flash-error {
-  background-color: pink;
+  background-color: #ffcccc;
 }
 
 main {

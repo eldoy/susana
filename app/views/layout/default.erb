@@ -13,9 +13,8 @@
     </div>
     <nav>
       <% if current_user %>
-        <span class="info">
-          <%= current_user.email %>
-        </span>
+        <span class="info"><%= current_user.email %></span>
+        <a href="/settings">Settings</a>
         <a href="/logout">Logout</a>
       <% else %>
         <a href="/signup">Signup</a>

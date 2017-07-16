@@ -35,6 +35,7 @@ autoload :Tilt, 'tilt'
 autoload :Erubis, 'erubis'
 autoload :RequestStore, 'request_store'
 autoload :UTF8Cleaner, 'utf8-cleaner'
+autoload :BCrypt, 'bcrypt'
 
 # Record time required to load gems
 stats.gems

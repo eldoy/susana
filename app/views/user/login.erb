@@ -3,6 +3,7 @@
 <section class="login">
   <h2>Login</h2>
   <form action="/session" method="POST">
+    <input type="hidden" value="<%= p[:redirect] %>" name="redirect">
     <p>
       <label>
         Email

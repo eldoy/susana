@@ -12,6 +12,7 @@ GEM
       sass
       therubyracer
       uglifier
+    bcrypt (3.1.10)
     bson (4.2.2)
     builder (3.2.3)
     concurrent-ruby (1.0.5)
@@ -131,6 +132,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   asset
+  bcrypt
   easymongo
   erubis
   fuprint

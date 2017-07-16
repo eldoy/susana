@@ -17,6 +17,7 @@ gem 'sucker_punch', :require => false
 gem 'sitemap_generator', :require => false
 gem 'pushfile', :require => false
 gem 'easymongo', :require => false
+gem 'bcrypt', :require => false
 
 group :development, :test do
   gem 'futest'

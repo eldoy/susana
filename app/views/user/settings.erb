@@ -1,0 +1,53 @@
+<% @title = 'Settings' %>
+
+<section class="settings">
+  <h3>Settings</h3>
+  <form action="/update" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <p>
+      <label>
+        Email
+        <br>
+        <input type="text" name="email" value="<%= p[:email] %>">
+      </label>
+      <%= r(:email) %>
+    </p>
+    <p>
+      <button>Save</button>
+    </p>
+  </form>
+
+  <br>
+
+  <h3>Password</h3>
+  <form action="/password" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <p>
+      <label>
+        Current Password
+        <br>
+        <input type="password" name="cpassword">
+      </label>
+      <%= r(:cpassword) %>
+    </p>
+    <p>
+      <label>
+        New Password
+        <br>
+        <input type="password" name="password">
+      </label>
+      <%= r(:password) %>
+    </p>
+    <p>
+      <label>
+        Confirm
+        <br>
+        <input type="password" name="confirm">
+      </label>
+      <%= r(:confirm) %>
+    </p>
+    <p>
+      <button>Save</button>
+    </p>
+  </form>
+</section>

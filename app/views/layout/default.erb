@@ -23,8 +23,9 @@
     </nav>
   </section>
   <main>
-    <% if f[:info] %><div class="flash flash-info"><%= f[:info] %></div><% end %>
-    <% if f[:error] %><div class="flash flash-error"><%= f[:error] %></div><% end %>
+    <% [:info, :error].each do |key| %>
+      <% if f[key] %><div class="flash flash-<%= key %>" onclick="this.remove()"><%= f[key] %></div><% end %>
+    <% end %>
     <%= yield %>
   </main>
   <%= script_tag 'bundle.js' %>

@@ -18,7 +18,7 @@ module Susana
     end
 
     # Deliver email
-    def deliver(opt)
+    def deliver(opt = {})
 
       # Don't deliver if we are in test env
       return false if App.env == 'test'

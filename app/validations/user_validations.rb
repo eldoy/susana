@@ -16,8 +16,8 @@ module UserValidations
 
   # Validate email
   def email_validation
-    e.add(:email, 'already taken') if App.db.users.first(:email => p[:email])
-    e.add(:email, 'not valid') if p[:email] !~ App.regex.email
+    e.add(:email, 'already taken') if db.users.first(:email => p[:email])
+    e.add(:email, 'not valid') if p[:email] !~ regex.email
   end
 
   # Validate current password

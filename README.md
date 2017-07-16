@@ -68,7 +68,7 @@ user#session:
   path: /session
   method: post
 ```
-Any method is supported, including `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `PATCH`, just add a `_method` parameter to your requests.
+Any method is supported, including `get`, `post`, `put`, `delete`, `head`, `patch`, just add a `_method` parameter to your requests.
 
 ### Controllers
 Each controller inherits from the application controller and has actions that are are mapped from the routes. You can access the Rack request, response and environment from here, in addition to session, cookie, flash and error objects.
@@ -183,32 +183,35 @@ Your assets live in `app/assets` and are served by our [asset middleware](https:
 We've included the [pushfile gem](https://github.com/fugroup/pushfile) for file uploads. Set up your account info in `config/pushfile.yml` to upload files to Amazon or Rackspace. Images are resized automatically using GraphicsMagick.
 
 ### The App
-Settings, database, sitemap, mail and regular expresssions are controlled in the App object, and are accessed using dot syntax. Here are some examples:
+Settings, database, sitemap, mail and regular expresssions are controlled in the App object, and are accessed using dot syntax. In the controllers, helpers and views, there is no need to prefix with `App.`. Here are some examples:
 
 ```ruby
 # Look up settings from settings.yml
 App.settings.url => 'https://www.fugroup.net'
 
+# In controllers, helpers and views you can skip the App.
+settings.url
+
 # Insert a user into the database
-App.db.users.set(:name => 'Vidar')
+db.users.set(:name => 'Vidar')
 
 # Get the first user in the database
-App.db.users.first
+db.users.first
 
 # Regenerate sitemap
-App.sitemap.write
+sitemap.write
 
 # Ping sitemap
-App.sitemap.ping
+sitemap.ping
 
 # Send the hello email
-App.mail.hello
+mail.hello
 
 # Use a regular expression
-'file.jpg' => App.regex.image
+'file.jpg' => regex.image
 
 # Threaded request store
-App.store[:count] = 1
+store[:count] = 1
 ```
 
 Check out `lib/susana/app.rb` to see all the things that are included. You will love making apps with Susana.

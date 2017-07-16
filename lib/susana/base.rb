@@ -19,6 +19,7 @@ module Susana
 
     # Access request and response objects
     def method_missing(name, *args, &block)
+      return App.send(name, *args) if App.respond_to?(name)
       return req.send(name, *args) if req.respond_to?(name)
       return res.send(name, *args) if res.respond_to?(name)
       super

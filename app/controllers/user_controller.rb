@@ -18,7 +18,10 @@ class UserController < ApplicationController
       token = generate_token(:users)
 
       # Store in database
-      App.db.users.set(:email => p[:email], :salt => salt, :password => password, :token => token)
+      db.users.set(:email => p[:email], :salt => salt, :password => password, :token => token)
+
+      # Send welcome email after setting up mailgun
+      # mail.hello
 
       # Log in and redirect
       s[:user] = token
@@ -35,14 +38,14 @@ class UserController < ApplicationController
   # POST /session
   def session
     # Check if user is in database
-    user = App.db.users.first(:email => p[:email])
+    user = db.users.first(:email => p[:email])
 
     # Authenticate user
     if authenticate(user)
       # Log in user
       s[:user] = user.token
       f[:info] = 'Welcome back!'
-      redirect(p[:redirect] || '/')
+      redirect(p[:redirect].present? ? p[:redirect] : '/')
     else
       f.now[:error] = 'Email and password combination not found'
       erb('user/login', :layout => :default)
@@ -73,7 +76,7 @@ class UserController < ApplicationController
       erb('user/settings', :layout => :default)
     else
       # Save in db
-      App.db.users.set(current_user.id, :email => p[:email])
+      db.users.set(current_user.id, :email => p[:email])
       f[:info] = 'Settings updated'
       redirect('/settings')
     end
@@ -94,7 +97,7 @@ class UserController < ApplicationController
       password = BCrypt::Engine.hash_secret(p[:password], current_user.salt)
 
       # Store new password
-      App.db.users.set(current_user.id, :password => password)
+      db.users.set(current_user.id, :password => password)
       f[:info] = 'Password updated'
       erb('user/settings', :layout => :default)
     end

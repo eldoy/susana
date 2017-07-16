@@ -4,7 +4,7 @@ module UserHelpers
 
   # Return a user if we are logged in
   def current_user
-    @current_user ||= App.db.users.first(:token => s[:user]) if s[:user]
+    @current_user ||= db.users.first(:token => s[:user]) if s[:user]
   end
 
   # Authenticate user
@@ -16,7 +16,7 @@ module UserHelpers
   def generate_token(coll, field = :token)
     begin
       token = SecureRandom.urlsafe_base64
-    end while App.db.send(coll).first(field => token)
+    end while db.send(coll).first(field => token)
     token
   end
 

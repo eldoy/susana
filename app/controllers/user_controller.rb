@@ -72,6 +72,7 @@ class UserController < ApplicationController
       f.now[:error] = 'Please correct the errors below'
       erb('user/settings', :layout => :default)
     else
+      # Save in db
       App.db.users.set(current_user.id, :email => p[:email])
       f[:info] = 'Settings updated'
       redirect('/settings')
@@ -89,6 +90,7 @@ class UserController < ApplicationController
       f.now[:error] = 'Please correct the errors below'
       erb('user/settings', :layout => :default)
     else
+      # Generate new hashed password
       password = BCrypt::Engine.hash_secret(p[:password], current_user.salt)
 
       # Store new password

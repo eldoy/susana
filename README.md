@@ -189,7 +189,7 @@ user_validation
 halt json(errors) if e.any?
 ```
 
-The filters work in the same way, and are intended for redirecting, setup or access control. They are usually run before the validations. You can call them directly from the controller action, or set them up to be called automatically from the route.
+The filters in `app/filters` work in the same way, and are intended for redirecting, setup or access control. They are usually run before the validations. You can call them directly from the controller action, or set them up to be called automatically from the route.
 
 In addition you can specify `before` and `after` which will run before and after the action. See the *Advanced routes* section above for more info.
 
@@ -206,7 +206,7 @@ Settings, database, sitemap, mail and regular expresssions are controlled in the
 # Look up settings from settings.yml
 App.settings.url => 'https://www.fugroup.net'
 
-# In controllers, helpers and views you can skip the App.
+# In controllers, helpers and views you can skip the App. prefix
 settings.url
 
 # Insert a user into the database

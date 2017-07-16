@@ -4,7 +4,7 @@ App.routes = {}
 Dir['./app/routes/*.yml'].sort.each do |f|
   r = YAML.load_file(f)
   r.each do |k, v|
-    r[k].reverse_merge!('method' => 'GET', 'filters' => [], 'validations' => [])
+    r[k].reverse_merge!('method' => 'GET', 'before' => [], 'filters' => [], 'validations' => [], 'after' => [])
     r[k]['method'].upcase!
 
     # Use regex by prefixing r!

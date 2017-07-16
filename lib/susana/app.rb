@@ -31,11 +31,14 @@ class App
     # puts "LOCALE: #{I18n.locale}"
 
     # Match a route
-    routes = App.map[req.request_method] || []; match = nil
-    route = routes.find{|r| match = r[0].params(req.path_info)}
+    map = App.map[req.request_method] || []; match = nil
+    entry = map.find{|r| match = r[0].params(req.path_info)}
 
     if match
-      # puts "FOUND: #{route[1]}##{route[2]} - #{match.inspect}"
+      # Extract name and action
+      name, action = entry[1], entry[2]
+
+      # puts "ENTRY: #{name}##{action} - #{match.inspect}"
 
       # Merge params
       match.each{|k, v| req.update_param(k, v)}
@@ -43,14 +46,25 @@ class App
       # Print request info
       print_info(env, req) if App.env == 'development'
 
+      # Get the route info for this map
+      route = App.routes["#{name}##{action}"]
+
       # Set up controller
-      controller = Object.const_get("#{route[1].capitalize}Controller").new(req, res, env)
+      controller = Object.const_get("#{name.capitalize}Controller").new(req, res, env)
 
       # Catch halt commands
       catch(:halt) do
 
+        # Run before, filter and validation methods
+        %w[before filters validations].each do |type|
+          route[type].each{|m| controller.send(m)}
+        end
+
         # Run route method
-        result = controller.send(route[2])
+        result = controller.send(action)
+
+        # Run after methods
+        route['after'].each{|m| controller.send(m)}
 
         # Write result
         res.write(result)

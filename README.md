@@ -67,6 +67,21 @@ user#session:
   desc: User session
   path: r!/session   # Prefix with r! to use a regular expression
   method: post
+
+# You can specify before, filters, validations and after in the route
+user#update:
+  desc: User update
+  path: /update
+  method: put
+  before:
+    - record_stats
+  filters:
+    - require_user_login
+  validations:
+    - email_validation
+  after:
+    - save_other_records
+    - send_email_job
 ```
 Any method is supported, including `get`, `post`, `put`, `delete`, `head`, `patch`, just add a `_method` parameter to your requests.
 
@@ -161,7 +176,7 @@ The default Susana application doesn't use models as in a traditional MVC patter
 ### Background queue
 The `lib/jobs` directory includes your background tasks. They are based on the [sucker_punch gem](https://github.com/brandonhilkert/sucker_punch) and works in a separate thread to make your long running tasks seem faster.
 
-### Validations and filters
+### Validations, filters, before and after
 Validations are included as modules in `app/validations`. This is because we want to validate the parameters instead of letting the model handle it. You can use the `e` object to add your errors, and use it in the controllers after:
 ```ruby
 # In the validation module
@@ -174,7 +189,9 @@ user_validation
 halt json(errors) if e.any?
 ```
 
-The filters work in the same way, and are intended for redirecting, setup or access control. They are usually run before the validations.
+The filters work in the same way, and are intended for redirecting, setup or access control. They are usually run before the validations. You can call them directly from the controller action, or set them up to be called automatically from the route.
+
+In addition you can specify `before` and `after` which will run before and after the action. See the *Advanced routes* section above for more info.
 
 ### Assets
 Your assets live in `app/assets` and are served by our [asset middleware](https://github.com/fugroup/asset). This asset manager compresses your CSS and Javascript in production, and makes sure your images are served fast as well.

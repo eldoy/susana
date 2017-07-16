@@ -7,7 +7,6 @@ class UserController < ApplicationController
 
   # POST /create
   def create
-    user_validation
     if e.any?
       f.now[:error] = 'Please correct the errors below'
       erb('user/signup', :layout => :default)
@@ -61,15 +60,11 @@ class UserController < ApplicationController
 
   # GET /settings
   def settings
-    require_user_login
     erb('user/settings', :layout => :default)
   end
 
   # PUT /update
   def update
-    require_user_login
-    email_validation
-
     # Save or display error
     if e.any?
       f.now[:error] = 'Please correct the errors below'
@@ -84,10 +79,6 @@ class UserController < ApplicationController
 
   # PUT /password
   def password
-    require_user_login
-    password_validation
-    current_password_validation
-
     # Save or display error
     if e.any?
       f.now[:error] = 'Please correct the errors below'

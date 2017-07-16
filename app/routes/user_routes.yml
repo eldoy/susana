@@ -6,6 +6,8 @@ user#create:
   desc: User create
   path: /create
   method: post
+  filters:
+    - user_validation
 
 user#login:
   desc: User login
@@ -23,13 +25,24 @@ user#logout:
 user#settings:
   desc: User settings
   path: /settings
+  filters:
+    - require_user_login
 
 user#update:
   desc: User update
   path: /update
   method: put
+  filters:
+    - require_user_login
+  validations:
+    - email_validation
 
 user#password:
   desc: User password
   path: /password
   method: put
+  filters:
+    - require_user_login
+  validations:
+    - password_validation
+    - current_password_validation

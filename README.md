@@ -57,7 +57,7 @@ root#home:
   method: get   # Get is default, not needed
 
 # Maps to project controller show action
-# The :id will give you a p[:id] parameter in the controller
+# The :id in the path will give you a p[:id] parameter in the controller
 project#show:
   desc: Project show
   path: /project/:id
@@ -65,7 +65,7 @@ project#show:
 # Maps to user controller session action
 user#session:
   desc: User session
-  path: /session
+  path: r!/session   # Prefix with r! to use a regular expression
   method: post
 ```
 Any method is supported, including `get`, `post`, `put`, `delete`, `head`, `patch`, just add a `_method` parameter to your requests.

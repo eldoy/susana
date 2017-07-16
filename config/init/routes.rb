@@ -6,6 +6,10 @@ Dir['./app/routes/*.yml'].sort.each do |f|
   r.each do |k, v|
     r[k].reverse_merge!('method' => 'GET', 'filters' => [], 'validations' => [])
     r[k]['method'].upcase!
+
+    # Use regex by prefixing r!
+    path = r[k]['path']
+    r[k]['path'] = %r{#{path[2..-1]}} if path.start_with?('r!')
   end
   App.routes.merge!(r)
 end

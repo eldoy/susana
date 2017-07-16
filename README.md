@@ -82,6 +82,16 @@ user#update:
   after:
     - save_other_records
     - send_email_job
+
+# You can also use yaml defaults to keep things dry
+defaults: &defaults
+  filters:
+    - hello_filter
+
+user#signup:
+  desc: User signup
+  path: /signup
+  <<: *defaults
 ```
 Any method is supported, including `get`, `post`, `put`, `delete`, `head`, `patch`, just add a `_method` parameter to your requests.
 

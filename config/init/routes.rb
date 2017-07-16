@@ -2,8 +2,15 @@
 App.routes = {}
 
 Dir['./app/routes/*.yml'].sort.each do |f|
+
+  # Load route file
   r = YAML.load_file(f)
+
+  # Remove invalid
+  r.keep_if{|k, v| k =~ /\w+#\w+/}
+
   r.each do |k, v|
+
     r[k].reverse_merge!('method' => 'GET', 'before' => [], 'filters' => [], 'validations' => [], 'after' => [])
     r[k]['method'].upcase!
 

@@ -232,7 +232,7 @@ sitemap.ping
 mail.hello
 
 # Use a regular expression
-'file.jpg' => regex.image
+'file.jpg' =~ regex.image
 
 # Threaded request store
 store[:count] = 1

@@ -15,5 +15,13 @@ module Susana
       layout.render(self, options[:locals]) { render }
     end
 
+    # Generate a token and make sure it's unique
+    def self.generate_token(coll, field = :token)
+      begin
+        token = SecureRandom.urlsafe_base64
+      end while App.db[coll].find(field => token).first
+      token
+    end
+
   end
 end

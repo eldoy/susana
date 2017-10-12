@@ -17,15 +17,15 @@ Light weight Ruby web application framework based on Rack
 - Sinatra style route matchers
 - Mailgun email client
 - Amazon and Rackspace uploads
-- Optional models
+- Models with validations
 - MongoDB adapter and client
 - Easy to use and customizable
 
 
 ### Installation
-Susana can be cloned directly from here or installed using rubygems. You need ruby, mongodb and optionally graphicsmagick to run the default application. The default application comes complete with a few routes and user login.
+Susana can be cloned directly from here or installed using rubygems. You need ruby, mongodb and optionally graphicsmagick to run the default application. The default application comes complete with a few routes and user management.
 
-Read the [susana gem README](https://github.com/fugroup/susana/blob/master/gem/README.md) to install Susana.
+[Click here for installation instructions](https://github.com/fugroup/susana/blob/master/gem/README.md)
 
 ### Philosophy
 Susana is written from scratch on top of Rack, with inspiration from Rails and Sinatra. It's only a few hundred lines of code, but is more complete than Sinatra in that we include a curated collection of gems to provide you with everything you need. Just install, load the app and start coding your views, completely turnkey.
@@ -39,7 +39,7 @@ Configuration files are found in the `config` directory. More info is found at t
 The language translations are found in `config/locales`. Just add your file and it will be automatically loaded. Emails, routes and sitemap supports translations out of the box. For the routes, just add your two-character language, i.e. `/no`, `/es`, `/ru`, in front of the path. The sitemap entries can be added in `lib/susana/sitemap.rb`. Have a look at the sitemap section in `config/boot.rb` for options.
 
 ### Database
-MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `config/database.yml` lets you specify the connection. The [Easymongo client](https://github.com/fugroup/easymongo) is already integrated and connects automatically. Using a database has never been this easy.
+MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `config/database.yml` lets you specify the connection. The [Mongocore client](https://github.com/fugroup/mongocore) is already integrated and connects automatically. Using a database has never been this easy.
 
 ### Email
 Mail is sent via [Mailgun](https://mailgun.com) using our client. Set up your `mailgun_api_url` in `settings.yml` and you are ready to send emails. Your email templates are found in `app/views/mail` and also includes layout and support for translations. Mails are sent in the background in a separate thread.
@@ -181,13 +181,13 @@ protect!
 ```
 
 ### Models
-The default Susana application doesn't use models as in a traditional MVC pattern, but you can add it if you want. The model files can be added to `app/models` and are automatically loaded. If you're looking for a fresh database ORM, take a look at [Mongocore](https://github.com/fugroup/mongocore).
+The default Susana application uses models as in a traditional MVC pattern, but you can also use it without. The model files can be added to `app/models` and are automatically loaded. We are using our own fresh mongodb ORM, [Mongocore.](https://github.com/fugroup/mongocore)
 
 ### Background queue
 The `lib/jobs` directory includes your background tasks. They are based on the [sucker_punch gem](https://github.com/brandonhilkert/sucker_punch) and works in a separate thread to make your long running tasks seem faster.
 
 ### Validations, filters, before and after
-Validations are included as modules in `app/validations`. This is because we want to validate the parameters instead of letting the model handle it. You can use the `e` object to add your errors, and use it in the controllers after:
+Validations are included as modules in `app/validations`. These are validations you can run before the route hits the controller action. You can use the `e` object to add your errors, and use it in the controllers after:
 ```ruby
 # In the validation module
 def user_validation
@@ -199,7 +199,7 @@ user_validation
 halt json(errors) if e.any?
 ```
 
-The filters in `app/filters` work in the same way, and are intended for redirecting, setup or access control. They are usually run before the validations. You can call them directly from the controller action, or set them up to be called automatically from the route.
+The filters in `app/filters` work in the same way, and are intended for redirecting, setup or access control. They are run before the validations. You can call them directly from the controller action, or set them up to be called automatically from the route.
 
 In addition you can specify `before` and `after` which will run before and after the action. See the *Advanced routes* section above for more info.
 
@@ -219,11 +219,8 @@ App.settings.url => 'https://www.fugroup.net'
 # In controllers, helpers and views you can skip the App. prefix
 settings.url
 
-# Insert a user into the database
-db.users.set(:name => 'Vidar')
-
-# Get the first user in the database
-db.users.first
+# Raw mongodb connection
+db[:users].find.first
 
 # Regenerate sitemap
 sitemap.write

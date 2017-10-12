@@ -2,30 +2,33 @@ class UserController < ApplicationController
 
   # GET /signup
   def signup
+    @user = User.new
     erb('user/signup', :layout => :default)
   end
 
   # POST /create
   def create
-    if e.any?
-      f.now[:error] = 'Please correct the errors below'
-      erb('user/signup', :layout => :default)
-    else
-      # Generate salt, hashed password and token for security
-      salt = BCrypt::Engine.generate_salt
-      password = BCrypt::Engine.hash_secret(p[:password], salt)
-      token = generate_token(:users)
+    # Set up user
+    @user = User.new(p)
+    @user.password = p[:password]
+    @user.confirm = p[:confirm]
+    @user.salt = BCrypt::Engine.generate_salt
+    @user.pw = BCrypt::Engine.hash_secret(@user.password, @user.salt)
+    @user.token = Susana::Util.generate_token(:users)
+    @user.validate_email = true
+    @user.validate_password = true
 
-      # Store in database
-      db.users.set(:email => p[:email], :salt => salt, :password => password, :token => token)
-
-      # Send welcome email after setting up mailgun
+    if @user.save(:validate => true)
+      # Send hello email
       # mail.hello
 
       # Log in and redirect
-      s[:user] = token
+      s[:user] = @user.token
       f[:info] = 'Welcome to Susana!'
       redirect('/')
+    else
+      f.now[:error] = 'Please correct the errors below'
+      erb('user/signup', :layout => :default)
     end
   end
 
@@ -37,12 +40,12 @@ class UserController < ApplicationController
   # POST /session
   def session
     # Check if user is in database
-    user = db.users.first(:email => p[:email])
+    @user = User.first(:email => p[:email])
 
     # Authenticate user
-    if authenticate(user)
+    if @user and @user.authenticate(p[:password])
       # Log in user
-      s[:user] = user.token
+      s[:user] = @user.token
       f[:info] = 'Welcome back!'
       redirect(p[:redirect].present? ? p[:redirect] : '/')
     else
@@ -60,36 +63,48 @@ class UserController < ApplicationController
 
   # GET /settings
   def settings
+    @user = current_user
     erb('user/settings', :layout => :default)
   end
 
   # PUT /update
   def update
-    # Save or display error
-    if e.any?
-      f.now[:error] = 'Please correct the errors below'
-      erb('user/settings', :layout => :default)
-    else
-      # Save in db
-      db.users.set(current_user.id, :email => p[:email])
+
+    # Fetch user
+    @user = current_user
+    @user.email = p[:email]
+    @user.validate_email = true
+
+    # Update user
+    if @user.save(:validate => true)
       f[:info] = 'Settings updated'
       redirect('/settings')
+    else
+      f.now[:error] = 'Please correct the errors below'
+      erb('user/settings', :layout => :default)
     end
   end
 
   # PUT /password
   def password
-    # Save or display error
-    if e.any?
-      f.now[:error] = 'Please correct the errors below'
-      erb('user/settings', :layout => :default)
-    else
-      # Generate new hashed password
-      password = BCrypt::Engine.hash_secret(p[:password], current_user.salt)
 
-      # Store new password
-      db.users.set(current_user.id, :password => password)
+    # Fetch user
+    @user = current_user
+
+    # Set up password
+    @user.password = p[:password]
+    @user.confirm = p[:confirm]
+    @user.current_password = p[:current_password]
+    @user.pw = BCrypt::Engine.hash_secret(@user.password, @user.salt)
+    @user.validate_password = true
+    @user.validate_current_password = true
+
+    # Save or display error
+    if @user.save(:validate => true)
       f[:info] = 'Password updated'
+      redirect('/settings')
+    else
+      f.now[:error] = 'Please correct the errors below'
       erb('user/settings', :layout => :default)
     end
   end

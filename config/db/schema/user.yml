@@ -1,0 +1,48 @@
+---
+meta:
+  name: user
+  type: document
+keys:
+  _id:
+    desc: Unique id
+    type: object_id
+    read: all
+    write: app
+  link:
+    desc: User link
+    read: all
+    write: dev
+  email:
+    desc: User email
+    read: all
+    write: dev
+  pw:
+    desc: User password
+    read: dev
+    write: dev
+  salt:
+    desc: User salt
+    read: dev
+    write: dev
+  token:
+    desc: User token
+    read: dev
+    write: dev
+  created_at:
+    desc: Created at
+    type: time
+    read: all
+    write: dev
+  updated_at:
+    desc: Updated at
+    type: time
+    read: all
+    write: dev
+
+accessor:
+  - password
+  - confirm
+  - current_password
+  - validate_email
+  - validate_password
+  - validate_current_password

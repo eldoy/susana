@@ -15,9 +15,9 @@ if config
   # Change these to write to log file
   # Mongo::Logger.logger = ::Logger.new('./log/mongo.log')
 
-  # Connect. Use App.db to access database
-  # https://github.com/fugroup/easymongo
-  App.db = Easymongo::Query.new([uri], :database => name)
+  # Connect. Use App.db to access the database directly
+  # https://github.com/fugroup/mongocore
+  App.db = Mongocore.db = Mongo::Client.new([uri], :database => name)
 
 else
   puts "Database settings not found for #{App.env} in config/database.yml"

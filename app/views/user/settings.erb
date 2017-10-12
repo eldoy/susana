@@ -8,9 +8,9 @@
       <label>
         Email
         <br>
-        <input type="text" name="email" value="<%= p[:email] %>">
+        <input type="text" name="email" value="<%= @user.email %>">
       </label>
-      <%= r(:email) %>
+      <%= r(@user, :email) %>
     </p>
     <p>
       <button>Save</button>
@@ -26,9 +26,9 @@
       <label>
         Current Password
         <br>
-        <input type="password" name="cpassword">
+        <input type="password" name="current_password">
       </label>
-      <%= r(:cpassword) %>
+      <%= r(@user, :current_password) %>
     </p>
     <p>
       <label>
@@ -36,7 +36,7 @@
         <br>
         <input type="password" name="password">
       </label>
-      <%= r(:password) %>
+      <%= r(@user, :password) %>
     </p>
     <p>
       <label>
@@ -44,7 +44,7 @@
         <br>
         <input type="password" name="confirm">
       </label>
-      <%= r(:confirm) %>
+      <%= r(@user, :confirm) %>
     </p>
     <p>
       <button>Save</button>

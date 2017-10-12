@@ -48,9 +48,8 @@ module Susana
     def l(*args); I18n.l(*args); end
 
     # Error helper
-    # Error helper
-    def r(key)
-      %{<div class="field-error">#{e.join(key)}</div>} if e[key]
+    def r(model, key)
+      %{<div class="field-error">#{model.errors[key].join(', ')}</div>} if model.errors[key]
     end
   end
 end

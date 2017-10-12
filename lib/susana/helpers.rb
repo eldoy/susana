@@ -17,8 +17,9 @@ module Susana
     end
 
     # Convert to JSON and set content type
-    def json(data)
-      headers['Content-Type', 'application/json']
+    def json(data, code = 200)
+      headers['Content-Type'] = 'application/json;charset=utf-8'
+      status = code
       data.to_json
     end
 

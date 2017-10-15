@@ -33,6 +33,9 @@ app = Rack::Builder.new do
   # Set up asset router for js and css
   use Asset::Router
 
+  # Serve static files, for use with React or Vue
+  # use Susana::Files
+
   # Set up session cookies
   use Rack::Session::Cookie,
     :path => '/',

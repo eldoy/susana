@@ -12,9 +12,6 @@ class UserController < ApplicationController
     @user = User.new(p)
     @user.password = p[:password]
     @user.confirm = p[:confirm]
-    @user.salt = BCrypt::Engine.generate_salt
-    @user.pw = BCrypt::Engine.hash_secret(@user.password, @user.salt)
-    @user.token = Susana::Util.generate_token(:users)
     @user.validate_email = true
     @user.validate_password = true
 

@@ -20,6 +20,14 @@ class User
     errors[:current_password] << 'is incorrect' if validate_current_password and authenticate(current_password)
   end
 
+  before :save do
+    if unsaved?
+      self.salt = BCrypt::Engine.generate_salt
+      self.pw = BCrypt::Engine.hash_secret(self.password, self.salt)
+      self.token = Susana::Util.generate_token(:users)
+    end
+  end
+
   # Authenticate user
   def authenticate(pword)
     pw == BCrypt::Engine.hash_secret(pword, salt)

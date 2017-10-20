@@ -17,7 +17,7 @@ class User
     end
 
     # Validate current password
-    errors[:current_password] << 'is incorrect' if validate_current_password and authenticate(current_password)
+    errors[:current_password] << 'is incorrect' if validate_current_password and !authenticate(current_password)
   end
 
   before :save do

@@ -18,10 +18,10 @@ gem 'sitemap_generator', :require => false
 gem 'pushfile', :require => false
 gem 'mongocore', :require => false
 gem 'bcrypt', :require => false
+gem 'fuprint', :require => false
 
 group :development, :test do
   gem 'futest'
-  gem 'fuprint'
 end
 
 group :development do

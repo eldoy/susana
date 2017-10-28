@@ -17,10 +17,9 @@ module Susana
     end
 
     # Convert to JSON and set content type
-    def json(data, code = 200)
+    def json(data)
       headers['Content-Type'] = 'application/json;charset=utf-8'
-      status = code
-      data.to_json
+      {:status => 'ok', :code => 200, :messages => [], :result => {}}.merge(data).to_json
     end
 
     # Basic auth

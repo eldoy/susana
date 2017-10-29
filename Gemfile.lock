@@ -148,6 +148,7 @@ DEPENDENCIES
   rake
   request_store
   rerun
+  rest-client
   sitemap_generator
   sucker_punch
   tilt

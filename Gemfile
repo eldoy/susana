@@ -19,6 +19,7 @@ gem 'pushfile', :require => false
 gem 'mongocore', :require => false
 gem 'bcrypt', :require => false
 gem 'fuprint', :require => false
+gem 'rest-client', :require => false
 
 group :development, :test do
   gem 'futest'

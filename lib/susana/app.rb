@@ -3,7 +3,7 @@ class App
   include Fuprint::Helpers
 
   class << self
-    attr_accessor :settings, :db, :name, :root, :views, :assets, :env, :map, :routes, :regex, :mail, :sitemap, :store, :debug
+    attr_accessor :settings, :db, :name, :root, :views, :assets, :env, :map, :routes, :regex, :mail, :sitemap, :store, :logger, :debug
   end
 
   def initialize(app = nil)
@@ -15,6 +15,7 @@ class App
   end
 
   def call!(env)
+
     # Set up request
     req = Rack::Request.new(env)
 
@@ -73,11 +74,53 @@ class App
     else
 
       # Not found
-      puts "Not found."
+      puts "Not found: #{req.path_info}"
       res.status = 404
     end
 
     # Finish response
     res.finish
+
+  # Catch exceptions
+  rescue Exception => e
+
+    # Construct message
+    message = %{#{e.class}: #{e.message}\n#{e.backtrace_locations[0..10].join("\n")}}
+
+    # Set up errors
+    env['rack.errors'] = App.logger.error if App.live?
+
+    # Write message
+    env['rack.errors'].write(message)
+
+    # Write error message
+    res.status = 502
+    res.write(message)
+    res.finish
+  end
+
+  # Live?
+  def self.live?
+    %w[production staging].include?(App.env)
+  end
+
+  # Development?
+  def self.development?
+    App.env == 'development'
+  end
+
+  # Staging?
+  def self.staging?
+    App.env == 'staging'
+  end
+
+  # Production?
+  def self.production?
+    App.env == 'production'
+  end
+
+  # Test?
+  def self.test?
+    App.env == 'test'
   end
 end

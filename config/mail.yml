@@ -1,4 +1,4 @@
-# Your database settings go here
+# Your email setup go here
 
 defaults: &defaults
   to: vidar@fugroup.net

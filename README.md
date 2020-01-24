@@ -25,7 +25,7 @@ Light weight Ruby web application framework based on Rack
 ### Installation
 Susana can be cloned directly from here or installed using rubygems. You need ruby, mongodb and optionally graphicsmagick to run the default application. The default application comes complete with a few routes and user management.
 
-[Click here for installation instructions](https://github.com/fugroup/susana/blob/master/gem/README.md)
+[Click here for installation instructions](https://github.com/eldoy/susana/blob/master/gem/README.md)
 
 ### Philosophy
 Susana is written from scratch on top of Rack, with inspiration from Rails and Sinatra. It's only a few hundred lines of code, but is more complete than Sinatra in that we include a curated collection of gems to provide you with everything you need. Just install, load the app and start coding your views, completely turnkey.
@@ -39,7 +39,7 @@ Configuration files are found in the `config` directory. More info is found at t
 The language translations are found in `config/locales`. Just add your file and it will be automatically loaded. Emails, routes and sitemap supports translations out of the box. For the routes, just add your two-character language, i.e. `/no`, `/es`, `/ru`, in front of the path. The sitemap entries can be added in `lib/susana/sitemap.rb`. Have a look at the sitemap section in `config/boot.rb` for options.
 
 ### Database
-MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `config/database.yml` lets you specify the connection. The [Mongocore client](https://github.com/fugroup/mongocore) is already integrated and connects automatically. Using a database has never been this easy.
+MongoDB is ready to use out of the box as long as you have mongod running on localhost. The `config/database.yml` lets you specify the connection. The [Mongocore client](https://github.com/eldoy/mongocore) is already integrated and connects automatically. Using a database has never been this easy.
 
 ### Email
 Mail is sent via [Mailgun](https://mailgun.com) using our client. Set up your `mailgun_api_url` in `settings.yml` and you are ready to send emails. Your email templates are found in `app/views/mail` and also includes layout and support for translations. Mails are sent in the background in a separate thread.
@@ -181,7 +181,7 @@ protect!
 ```
 
 ### Models
-The default Susana application uses models as in a traditional MVC pattern, but you can also use it without. The model files can be added to `app/models` and are automatically loaded. We are using our own fresh mongodb ORM, [Mongocore.](https://github.com/fugroup/mongocore)
+The default Susana application uses models as in a traditional MVC pattern, but you can also use it without. The model files can be added to `app/models` and are automatically loaded. We are using our own fresh mongodb ORM, [Mongocore.](https://github.com/eldoy/mongocore)
 
 ### Background queue
 The `lib/jobs` directory includes your background tasks. They are based on the [sucker_punch gem](https://github.com/brandonhilkert/sucker_punch) and works in a separate thread to make your long running tasks seem faster.
@@ -204,17 +204,17 @@ The filters in `app/filters` work in the same way, and are intended for redirect
 In addition you can specify `before` and `after` which will run before and after the action. See the *Advanced routes* section above for more info.
 
 ### Assets
-Your assets live in `app/assets` and are served by our [asset middleware](https://github.com/fugroup/asset). This asset manager compresses your CSS and Javascript in production, and makes sure your images are served fast as well.
+Your assets live in `app/assets` and are served by our [asset middleware](https://github.com/eldoy/asset). This asset manager compresses your CSS and Javascript in production, and makes sure your images are served fast as well.
 
 ### Uploads
-We've included the [pushfile gem](https://github.com/fugroup/pushfile) for file uploads. Set up your account info in `config/pushfile.yml` to upload files to Amazon or Rackspace. Images are resized automatically using GraphicsMagick.
+We've included the [pushfile gem](https://github.com/eldoy/pushfile) for file uploads. Set up your account info in `config/pushfile.yml` to upload files to Amazon or Rackspace. Images are resized automatically using GraphicsMagick.
 
 ### The App
 Settings, database, sitemap, mail and regular expresssions are controlled in the App object, and are accessed using dot syntax. In the controllers, helpers and views, there is no need to prefix with `App.`. Here are some examples:
 
 ```ruby
 # Look up settings from settings.yml
-App.settings.url => 'https://www.fugroup.net'
+App.settings.url => 'https://eldoy.com'
 
 # In controllers, helpers and views you can skip the App. prefix
 settings.url
@@ -241,7 +241,7 @@ store[:count] = 1
 Check out `lib/susana/app.rb` to see all the things that are included. You will love making apps with Susana.
 
 ### Status
-Everything is working but libraries are new, please report issues. Contributions are welcome.
+Everything is working, please report issues. Contributions are welcome.
 
 MIT licensed.
 

@@ -26,9 +26,9 @@ http://localhost:9292
 ```
 That's it! You now have a fully working app ready to be developed.
 
-Now head back to [the documentation](https://github.com/fugroup/susana) to find out about the features, or read the well commented source code. It's only a few hundred lines of code.
+Now head back to [the documentation](https://github.com/eldoy/susana) to find out about the features, or read the well commented source code. It's only a few hundred lines of code.
 
-This library is actively maintained by [Fugroup Ltd.](http://www.fugroup.net) We are the creators of [CrowdfundHQ.](https://crowdfundhq.com)
+This library is maintained by [Eldøy Projects](https://eldoy.com)
 
 Thanks!
 

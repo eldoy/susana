@@ -81,7 +81,7 @@ GEM
       fog-aws
       fog-rackspace
       mini_magick
-    rack (2.0.3)
+    rack (2.0.8)
     rack-cache (1.7.1)
       rack (>= 0.4)
     rack-contrib (2.0.0)

@@ -1,5 +1,5 @@
 # Sends emails for your app
-# Example: App.mail.hello(:to => 'vidar@fugroup.net', :locals => {:name => 'Susana'})
+# Example: App.mail.hello(:to => 'vidar@eldoy.com', :locals => {:name => 'Susana'})
 
 module Susana
   class Mail
